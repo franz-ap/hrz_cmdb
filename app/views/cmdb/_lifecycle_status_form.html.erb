@@ -1,0 +1,68 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Form partial for creating and editing lifecycle status entries.
+            Allows defining CI operational states like planning, active, maintenance, decommissioned. %>
+
+<div class="lifecycle-status-form-container">
+  <h3><%= l('hrz_cmdb.lifecycle_statuses.new') %></h3>
+
+  <%= form_tag '/cmdb/lifecycle_statuses', method: :post, id: 'new-lifecycle-status-form', class: 'lifecycle-status-form' do %>
+    <div class="form-group">
+      <%= label_tag :b_name_full, l('hrz_cmdb.fields.b_name_full') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'lifecycle_status[b_name_full]', '', class: 'form-control', maxlength: 120 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_name_abbr, l('hrz_cmdb.fields.b_name_abbr') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'lifecycle_status[b_name_abbr]', '', class: 'form-control form-control-short', maxlength: 15 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_key, l('hrz_cmdb.fields.b_key') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'lifecycle_status[b_key]', '', class: 'form-control form-control-short', required: true %>
+        <span class="hint"><%= l('hrz_cmdb.hints.b_key_lifecycle_status') %></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_comment, l('hrz_cmdb.fields.b_comment') %>
+      <div class="field-wrapper">
+        <%= text_area_tag 'lifecycle_status[b_comment]', '', class: 'form-control', rows: 5, maxlength: 10000 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_url_doc, l('hrz_cmdb.fields.b_url_doc') %>
+      <div class="field-wrapper">
+        <div class="url-field-container">
+          <%= text_field_tag 'lifecycle_status[b_url_doc]', '', class: 'form-control url-field', maxlength: 1500 %>
+          <span class="url-open-icon disabled" title="<%= l('hrz_cmdb.buttons.open_url', default: 'Open URL') %>"></span>
+        </div>
+        <span class="hint"><%= l('hrz_cmdb.hints.b_url_doc') %></span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag l('hrz_cmdb.buttons.create'), class: 'button button-positive', name: 'create' %>
+      <%= link_to l('hrz_cmdb.buttons.cancel'), '#', class: 'button', onclick: 'HrzCmdb.clearDetails(); return false;' %>
+    </div>
+  <% end %>
+</div>

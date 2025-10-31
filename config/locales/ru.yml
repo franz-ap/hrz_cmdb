@@ -1,0 +1,281 @@
+#-------------------------------------------------------------------------------------------#
+# Redmine CMDB plugin: Configuration Management DataBase                                    #
+# Copyright (C) 2025 Franz Apeltauer                                                        #
+#                                                                                           #
+# This program is free software: you can redistribute it and/or modify it under the terms   #
+# of the GNU Affero General Public License as published by the Free Software Foundation,    #
+# either version 3 of the License, or (at your option) any later version.                   #
+#                                                                                           #
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; #
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #
+# See the GNU Affero General Public License for more details.                               #
+#                                                                                           #
+# You should have received a copy of the GNU Affero General Public License                  #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.                    #
+#-------------------------------------------------------------------------------------eohdr-#
+ru:
+  label_cmdb: "CMDB"
+
+  activerecord:
+    attributes:
+      hrzcm_location:
+        b_name_full: "Название"
+        b_name_abbr: "Краткое название"
+        b_comment: "Примечания"
+        b_url_doc: "Документация"
+        b_key: "Текстовый ключ"
+        j_type_id: "Тип"
+        j_part_of1_id: "Является частью"
+        j_part_of2_id: "Также является частью"
+      hrzcm_locat_hier:
+        b_name_full: "Название"
+        b_name_abbr: "Краткое название"
+        b_comment: "Примечания"
+        b_url_doc: "Документация"
+        b_key: "Текстовый ключ"
+        j_level: "Уровень иерархии"
+      hrzcm_ci_class:
+        b_name_full: "Название"
+        b_name_abbr: "Краткое название"
+        b_comment: "Примечания"
+        b_url_doc: "Документация"
+        b_key: "Текстовый ключ"
+        j_sort: "Порядок сортировки"
+        j_subclass_of_id: "Подкласс"
+      hrzcm_lifecycle_status:
+        b_name_full: "Полное название"
+        b_name_abbr: "Сокращение"
+        b_comment: "Комментарий"
+        b_url_doc: "URL документации"
+        b_key: "Текстовый ключ"
+      hrzcm_ci:
+        b_name_full: "Полное название"
+        b_name_abbr: "Сокращение"
+        b_comment: "Комментарий"
+        b_url_doc: "URL документации"
+        j_ci_class_id: "Класс CI"
+        j_location_id: "Локация"
+        b_producer: "Производитель, Поставщик"
+        b_model: "Модель"
+        b_tag_serial: "Метка, Серийный номер, Инвентарный номер"
+        j_status_id: "Статус жизненного цикла"
+      hrzcm_ext_sys:
+        b_name_full: "Полное имя"
+        b_name_abbr: "Аббревиатура"
+        b_comment: "Комментарий"
+        b_url_doc: "URL документации"
+        b_key: "Текстовый ключ"
+        b_url_ci_details_ext: "URL внешней системы для деталей CI"
+        j_redmine_user_id: "ID пользователя Redmine"
+        j_location_default_id: "Местоположение по умолчанию"
+
+  hrz_cmdb:
+    select_item: "Выберите элемент из дерева для просмотра деталей"
+    select_type: "Выберите тип"
+    select_ci_class: "Выберите класс CI"
+    select_location: "Выберите локацию"
+    select_status: "Выберите статус жизненного цикла"
+
+    locations:
+      title: "Локации"
+      new: "Создать новую локацию"
+      created: "Локация успешно создана"
+      updated: "Локация успешно обновлена"
+      deleted: "Локация успешно удалена"
+
+    location_hierarchy:
+      title: "Иерархия локаций"
+      new: "Создать новый уровень иерархии"
+      created: "Уровень иерархии успешно создан"
+      updated: "Уровень иерархии успешно обновлен"
+      deleted: "Уровень иерархии успешно удален"
+      has_locations: "Невозможно удалить: уровень иерархии имеет связанные локации"
+
+    ci_classes:
+      title: "Классы CI"
+      new: "Создать новый класс CI"
+      created: "Класс CI успешно создан"
+      updated: "Класс CI успешно обновлен"
+      deleted: "Класс CI успешно удален"
+      has_subclasses: "Невозможно удалить: класс CI имеет подклассы"
+      has_cis: "Невозможно удалить: класс CI используется конфигурационными элементами"
+      cannot_delete_in_use: "Невозможно удалить: класс CI все еще используется"
+
+    cis:
+      title: "Конфигурационные элементы"
+      new: "Создать новый CI"
+      created: "CI успешно создан"
+      updated: "CI успешно обновлен"
+      deleted: "CI успешно удален"
+
+    cis_by_class:
+      title: "CI по классам"
+
+    lifecycle_statuses:
+      title: "Статусы жизненного цикла"
+      new: "Создать новый статус жизненного цикла"
+      created: "Статус жизненного цикла успешно создан"
+      updated: "Статус жизненного цикла успешно обновлен"
+      deleted: "Статус жизненного цикла успешно удален"
+
+    external_systems:
+      title: "Внешние системы"
+      new: "Создать новую внешнюю систему"
+      created: "Внешняя система успешно создана"
+      updated: "Внешняя система успешно обновлена"
+      deleted: "Внешняя система успешно удалена"
+
+    basic_data:
+      title: "Основные данные"
+
+    fields:
+      bezeichnung: "Название"
+      kurzbezeichnung: "Краткое название"
+      bemerkungen: "Примечания"
+      dokumentation: "Документация"
+      b_name_full: "Полное имя"
+      b_name_abbr: "Аббревиатура"
+      b_comment: "Комментарий"
+      b_url_doc: "URL документации"
+      b_key: "Текстовый ключ"
+      j_level: "Уровень иерархии"
+      j_sort: "Порядок сортировки"
+      j_subclass_of: "Подкласс"
+      type: "Тип"
+      part_of1: "Является частью"
+      part_of2: "Также является частью"
+      j_ci_class: "Класс CI"
+      j_location: "Локация"
+      b_producer: "Производитель, Поставщик"
+      b_model: "Модель"
+      b_tag_serial: "Метка, Серийный номер, Инвентарный номер"
+      j_status: "Статус жизненного цикла"
+      b_url_ci_details_ext: "URL внешней системы для деталей CI"
+      j_redmine_user_id: "ID пользователя Redmine"
+      j_location_default_id: "Местоположение по умолчанию"
+
+    hints:
+      dokumentation: "Любой URL. Для статей TikiWiki достаточно префикса tiki: и имени страницы."
+      b_key_hierarchy: "Уникальный текстовый ключ"
+      b_key_location: "Например, для стран код ISO 3166-1."
+      b_key_ci_class: "Уникальный текстовый ключ"
+      b_key_lifecycle_status: "Уникальный текстовый ключ"
+      j_level: "Определяет порядок сортировки, например, от 10=Планета Земля / 20=Континент с шагом в десять до 5000: Шкаф"
+      j_sort: "Любое число. Записи сортируются по этому числу по возрастанию. Для равных чисел по краткому названию."
+      b_url_doc: "Любой URL. Для статей TikiWiki только префикс tiki: за которым следует имя страницы."
+      b_url_ci_details_ext: "URL для отображения деталей CI в этой внешней системе. Текст \"${key_ext}\" будет заменен ключом внешней системы. Пример: \"https://ext_cmdb.local/disp?key=${key_ext}\""
+      j_redmine_user_id: "Пользователь Redmine, которого внешняя система использует для аутентификации для синхронизации данных."
+      j_location_default_id: "Если внешняя система содержит только CI из определенного местоположения или не предоставляет информацию о местоположении, местоположение, указанное здесь, будет использоваться для всех CI, сообщаемых этой внешней системой."
+      select_user: "Выберите пользователя"
+
+    status_info:
+      title: "Информация о статусе"
+      record_id: "ID записи"
+      created_by: "Создано"
+      updated_by: "последнее обновление"
+      at: "в"
+      new_record: "Новая запись (еще не сохранена)"
+
+    buttons:
+      save: "Сохранить изменения"
+      save_continue: "Сохранить изменения, продолжить"
+      cancel: "Отмена"
+      create: "Создать новую запись"
+      save_as_copy: "Сохранить как копию"
+      delete: "Удалить"
+      open_url: "Открыть URL"
+      back: "Назад"
+
+    confirm:
+      delete_location: "Вы уверены, что хотите удалить это местоположение?"
+      delete_ci_class: "Вы уверены, что хотите удалить этот класс CI?"
+      delete_ci: "Вы уверены, что хотите удалить этот CI?"
+      delete_lifecycle_status: "Вы уверены, что хотите удалить этот статус жизненного цикла?"
+      delete_ext_sys: "Вы уверены, что хотите удалить эту внешнюю систему?"
+      delete_hierarchy: "Вы уверены, что хотите удалить этот уровень иерархии?"
+
+    errors:
+      b_key_not_unique_for_type: "должен быть уникальным в пределах типа"
+      access_denied: "Доступ запрещен"
+
+
+    settings:
+      tiki_url_title: "TikiWiki базовый URL"
+      tiki_url_hint: "Базовый URL для ссылок TikiWiki (например, https://tikiwiki.local/x?page=)"
+
+    permissions:
+      title: "HRZ CMDB Разрешения"
+      view_cmdb: "Просмотр CMDB"
+      edit_cmdb: "Редактирование CMDB"
+      edit_basic_data: "Редактирование основных данных"
+      admin_note: "Примечание: Администраторы автоматически имеют все разрешения."
+      view_cmdb_hint: "Выберите группы, которые могут просматривать данные CMDB"
+      edit_cmdb_hint: "Выберите группы, которые могут редактировать локации CMDB"
+      edit_basic_data_hint: "Выберите группы, которые могут редактировать основные данные (уровни иерархии)"
+
+    settings:
+      title: "Настройки"
+
+    seed_data:
+      title: "Управление начальными данными"
+      menu_title: "Начальные данные"
+      add_title: "Добавление начальных данных"
+      add_description: "Добавляет предопределенные основные данные (уровни иерархии локаций, классы CI, статусы жизненного цикла). Существующие записи (идентифицируемые по b_key) будут пропущены."
+      add_button: "Добавить начальные данные"
+      add_confirm: "Вы уверены, что хотите добавить начальные данные? Существующие записи будут сохранены."
+      remove_title: "Удаление неиспользуемых начальных данных"
+      remove_description: "Удаляет записи начальных данных, на которые нет ссылок через внешние ключи. Записи, на которые есть ссылки, будут сохранены."
+      remove_button: "Удалить неиспользуемые начальные данные"
+      remove_confirm: "Вы уверены, что хотите удалить неиспользуемые начальные данные? Будут удалены только записи без ссылок."
+      add_result_title: "Результаты добавления начальных данных"
+      remove_result_title: "Результаты удаления начальных данных"
+      model: "Модель"
+      inserted: "Вставлено"
+      skipped: "Пропущено (уже существует)"
+      deleted: "Удалено"
+      kept: "Сохранено (используется)"
+      errors_count: "Ошибки"
+      errors_title: "Ошибки"
+      models:
+        hrzcm_locat_hier: "Уровни иерархии локаций"
+        hrzcm_ci_class: "Классы CI"
+        hrzcm_lifecycle_status: "Статусы жизненного цикла"
+
+    info:
+      title: "Информация о плагине"
+      menu_title: "Инфо"
+      plugin_info: "Информация о плагине"
+      plugin_name: "Название"
+      version: "Версия"
+      url: "URL"
+      statistics: "Статистика"
+      entity: "Объект"
+      count: "Количество"
+      entities:
+        ci_classes: "Классы CI"
+        cis: "Конфигурационные элементы"
+        lifecycle_statuses: "Статусы жизненного цикла"
+        location_hierarchies: "Уровни иерархии локаций"
+        locations: "Локации"
+
+  # Issue CI Integration
+  label_configuration_items: "Конфигурационные элементы"
+  label_add_ci: "Добавить CI"
+  label_select_ci: "Выбрать CI"
+  label_no_cis_linked: "Нет связанных конфигурационных элементов"
+  label_ci_class: "Класс CI"
+  label_location: "Локация"
+  label_lifecycle_status: "Статус жизненного цикла"
+  label_loading: "Загрузка"
+  notice_ci_added: "CI успешно добавлен"
+  notice_ci_removed: "CI успешно удален"
+  error_ci_not_found: "CI не найден"
+  label_configuration_item: "Элемент конфигурации"
+  label_ci_added: "добавлено: %{new_value}"
+  label_ci_deleted: "удалено: %{old_value}"
+
+  # Project module permissions
+  project_module:
+    cmdb: "CMDB"
+  permission_view_issue_cis: "Просмотр CI в проблемах"
+  permission_manage_issue_cis: "Управление CI в проблемах"

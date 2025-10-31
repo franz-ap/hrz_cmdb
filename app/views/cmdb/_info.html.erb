@@ -1,0 +1,157 @@
+<%# Purpose: Displays plugin information, logos, URL, and statistics about CMDB entities. %>
+
+<div class="cmdb-info">
+  <h3><%= l('hrz_cmdb.info.title') %></h3>
+
+  <div class="info-content">
+    <!-- CMDB Logo -->
+    <div class="info-section logo-section">
+      <%= image_tag('cmdb_logo.svg', alt: 'CMDB Logo', class: 'cmdb-logo', plugin: 'hrz_cmdb') %>
+    </div>
+
+    <!-- Plugin Information -->
+    <div class="info-section plugin-info">
+      <h4><%= l('hrz_cmdb.info.plugin_info') %></h4>
+      <table class="info-table">
+        <tr>
+          <th><%= l('hrz_cmdb.info.plugin_name') %>:</th>
+          <td><%= @plugin_name %></td>
+        </tr>
+        <tr>
+          <th><%= l('hrz_cmdb.info.version') %>:</th>
+          <td><%= @plugin_version %></td>
+        </tr>
+        <tr>
+          <th><%= l('hrz_cmdb.info.url') %>:</th>
+          <td>
+            <%= link_to @plugin_url, @plugin_url, target: '_blank', class: 'external' %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- AGPL License Logo -->
+    <div class="info-section license-section">
+      <%= link_to 'https://www.gnu.org/licenses/agpl-3.0.html', target: '_blank' do %>
+        <%= image_tag('agplv3-155x51.png', alt: 'AGPL v3 License', class: 'license-logo', plugin: 'hrz_cmdb') %>
+      <% end %>
+    </div>
+
+    <!-- Statistics -->
+    <div class="info-section statistics-section">
+      <h4><%= l('hrz_cmdb.info.statistics') %></h4>
+      <table class="list statistics-table">
+        <thead>
+          <tr>
+            <th><%= l('hrz_cmdb.info.entity') %></th>
+            <th><%= l('hrz_cmdb.info.count') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= l('hrz_cmdb.info.entities.ci_classes') %></td>
+            <td class="count-cell"><%= @ci_classes_count %></td>
+          </tr>
+          <tr>
+            <td><%= l('hrz_cmdb.info.entities.cis') %></td>
+            <td class="count-cell"><%= @cis_count %></td>
+          </tr>
+          <tr>
+            <td><%= l('hrz_cmdb.info.entities.lifecycle_statuses') %></td>
+            <td class="count-cell"><%= @lifecycle_statuses_count %></td>
+          </tr>
+          <tr>
+            <td><%= l('hrz_cmdb.info.entities.location_hierarchies') %></td>
+            <td class="count-cell"><%= @location_hierarchies_count %></td>
+          </tr>
+          <tr>
+            <td><%= l('hrz_cmdb.info.entities.locations') %></td>
+            <td class="count-cell"><%= @locations_count %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+.cmdb-info {
+  padding: 20px;
+}
+
+.cmdb-info h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.info-content {
+  max-width: 800px;
+}
+
+.info-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.info-section h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.logo-section {
+  text-align: center;
+  background-color: white;
+}
+
+.cmdb-logo {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+}
+
+.license-section {
+  text-align: center;
+  background-color: white;
+}
+
+.license-logo {
+  display: inline-block;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-table th,
+.info-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.info-table th {
+  width: 30%;
+  font-weight: bold;
+  color: #555;
+}
+
+.info-table td {
+  color: #333;
+}
+
+.statistics-table {
+  width: 100%;
+}
+
+.statistics-table .count-cell {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #2196F3;
+}
+</style>

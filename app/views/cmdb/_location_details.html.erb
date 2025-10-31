@@ -1,0 +1,198 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Detail view partial displaying location information including type, parents, and metadata.
+            Shows location attributes in a read-only format with edit/delete buttons. %>
+
+<div class="location-details">
+  <h3><%= location.tree_label %></h3>
+
+  <% if can_edit %>
+    <%= form_tag "/cmdb/location/#{location.id}", method: :put, id: 'location-form', class: 'location-form' do %>
+      <div class="form-group">
+        <%= label_tag :b_name_full, l('hrz_cmdb.fields.b_name_full') %>
+        <div class="field-wrapper">
+          <%= text_field_tag 'location[b_name_full]', location.b_name_full, class: 'form-control', maxlength: 120 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_name_abbr, l('hrz_cmdb.fields.b_name_abbr') %>
+        <div class="field-wrapper">
+          <%= text_field_tag 'location[b_name_abbr]', location.b_name_abbr, class: 'form-control form-control-short', maxlength: 15 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_key, l('hrz_cmdb.fields.b_key') %>
+        <div class="field-wrapper">
+          <%= text_field_tag 'location[b_key]', location.b_key, class: 'form-control form-control-short' %>
+          <span class="hint"><%= l('hrz_cmdb.hints.b_key_location') %></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :j_type_id, l('hrz_cmdb.fields.type') %>
+        <div class="field-wrapper">
+          <%= select_tag 'location[j_type_id]',
+              options_from_collection_for_select(HrzcmLocatHier.ordered_by_level, :id, :b_name_abbr, location.j_type_id),
+              class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :j_part_of1_id, l('hrz_cmdb.fields.part_of1') %>
+        <div class="field-wrapper">
+          <%= select_tag 'location[j_part_of1_id]',
+              options_from_collection_for_select(HrzcmLocation.where.not(id: location.id).ordered_by_b_name_abbr,
+                                                :id, :display_name, location.j_part_of1_id),
+              include_blank: true,
+              class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :j_part_of2_id, l('hrz_cmdb.fields.part_of2') %>
+        <div class="field-wrapper">
+          <%= select_tag 'location[j_part_of2_id]',
+              options_from_collection_for_select(HrzcmLocation.where.not(id: location.id).ordered_by_b_name_abbr,
+                                                :id, :display_name, location.j_part_of2_id),
+              include_blank: true,
+              class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_comment, l('hrz_cmdb.fields.b_comment') %>
+        <div class="field-wrapper">
+          <%= text_area_tag 'location[b_comment]', location.b_comment, class: 'form-control', rows: 5, maxlength: 10000 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_url_doc, l('hrz_cmdb.fields.b_url_doc') %>
+        <div class="field-wrapper">
+          <div class="url-field-container">
+            <%= text_field_tag 'location[b_url_doc]', location.b_url_doc, class: 'form-control url-field', maxlength: 1500 %>
+            <span class="url-open-icon <%= location.b_url_doc.blank? ? 'disabled' : '' %>"
+                  data-url="<%= location.b_url_doc %>"
+                  title="<%= l('hrz_cmdb.buttons.open_url', default: 'Open URL') %>"></span>
+          </div>
+          <span class="hint"><%= l('hrz_cmdb.hints.b_url_doc') %></span>
+        </div>
+      </div>
+
+      <fieldset class="status-info">
+        <legend><%= l('hrz_cmdb.status_info.title') %></legend>
+        <div class="status-info-content">
+          <% if location.persisted? %>
+            <%= l('hrz_cmdb.status_info.record_id') %>: <%= location.id %>
+            <% if location.creator.present? %>
+              <%= l('hrz_cmdb.status_info.created_by') %>
+              <span class="user-link" title="<%= "#{location.creator.firstname} #{location.creator.lastname}" %>"><%= location.creator.login %></span>
+              <%= l('hrz_cmdb.status_info.at') %> <%= format_time(location.created_on) %><%= location.updater.present? ? ',' : '.' %>
+            <% end %>
+            <% if location.updater.present? %>
+              <%= l('hrz_cmdb.status_info.updated_by') %>
+              <span class="user-link" title="<%= "#{location.updater.firstname} #{location.updater.lastname}" %>"><%= location.updater.login %></span>
+              <%= l('hrz_cmdb.status_info.at') %> <%= format_time(location.updated_on) %>.
+            <% end %>
+          <% else %>
+            <%= l('hrz_cmdb.status_info.new_record') %>
+          <% end %>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <%= submit_tag l('hrz_cmdb.buttons.save'), class: 'button button-positive' %>
+        <%= submit_tag l('hrz_cmdb.buttons.save_continue'), class: 'button', name: 'continue' %>
+        <% if location.persisted? %>
+          <%= submit_tag l('hrz_cmdb.buttons.save_as_copy'), class: 'button', name: 'save_as_copy' %>
+        <% end %>
+        <% if location.persisted? %>
+          <%= link_to l('hrz_cmdb.buttons.delete'), "#", class: 'button button-negative',
+                      onclick: "if (confirm('#{l('hrz_cmdb.confirm.delete_location')}')) { HrzCmdb.deleteNode('location', #{location.id}); } return false;" %>
+        <% end %>
+        <%= link_to l('hrz_cmdb.buttons.cancel'), '#', class: 'button', onclick: 'HrzCmdb.clearDetails(); return false;' %>
+      </div>
+    <% end %>
+  <% else %>
+    <!-- Read-only view -->
+    <div class="location-view">
+      <div class="field-group">
+        <label><%= l('hrz_cmdb.fields.b_name_full') %>:</label>
+        <span><%= location.b_name_full %></span>
+      </div>
+
+      <div class="field-group">
+        <label><%= l('hrz_cmdb.fields.b_name_abbr') %>:</label>
+        <span><%= location.b_name_abbr %></span>
+      </div>
+
+      <div class="field-group">
+        <label><%= l('hrz_cmdb.fields.b_key') %>:</label>
+        <span><%= location.b_key %></span>
+      </div>
+
+      <div class="field-group">
+        <label><%= l('hrz_cmdb.fields.type') %>:</label>
+        <span><%= location.location_type&.b_name_abbr %></span>
+      </div>
+
+      <div class="field-group">
+        <label><%= l('hrz_cmdb.fields.part_of1') %>:</label>
+        <span><%= location.parent1&.display_name %></span>
+      </div>
+
+      <div class="field-group">
+        <label><%= l('hrz_cmdb.fields.part_of2') %>:</label>
+        <span><%= location.parent2&.display_name %></span>
+      </div>
+
+      <div class="field-group">
+        <label><%= l('hrz_cmdb.fields.b_comment') %>:</label>
+        <div class="text-content"><%= simple_format(location.b_comment) %></div>
+      </div>
+
+      <div class="field-group">
+        <label><%= l('hrz_cmdb.fields.b_url_doc') %>:</label>
+        <% if location.b_url_doc.present? %>
+          <%= link_to location.b_url_doc, '#', onclick: "HrzCmdb.openTiki('#{escape_javascript(location.b_url_doc)}'); return false;" %>
+        <% end %>
+      </div>
+
+      <fieldset class="status-info">
+        <legend><%= l('hrz_cmdb.status_info.title') %></legend>
+        <div class="status-info-content">
+          <% if location.persisted? %>
+            <%= l('hrz_cmdb.status_info.record_id') %>: <%= location.id %>
+            <% if location.creator.present? %>
+              <%= l('hrz_cmdb.status_info.created_by') %>
+              <span class="user-link" title="<%= "#{location.creator.firstname} #{location.creator.lastname}" %>"><%= location.creator.login %></span>
+              <%= l('hrz_cmdb.status_info.at') %> <%= format_time(location.created_on) %><%= location.updater.present? ? ',' : '.' %>
+            <% end %>
+            <% if location.updater.present? %>
+              <%= l('hrz_cmdb.status_info.updated_by') %>
+              <span class="user-link" title="<%= "#{location.updater.firstname} #{location.updater.lastname}" %>"><%= location.updater.login %></span>
+              <%= l('hrz_cmdb.status_info.at') %> <%= format_time(location.updated_on) %>.
+            <% end %>
+          <% else %>
+            <%= l('hrz_cmdb.status_info.new_record') %>
+          <% end %>
+        </div>
+      </fieldset>
+    </div>
+  <% end %>
+</div>

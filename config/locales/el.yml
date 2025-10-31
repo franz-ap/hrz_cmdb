@@ -1,0 +1,280 @@
+#-------------------------------------------------------------------------------------------#
+# Redmine CMDB plugin: Configuration Management DataBase                                    #
+# Copyright (C) 2025 Franz Apeltauer                                                        #
+#                                                                                           #
+# This program is free software: you can redistribute it and/or modify it under the terms   #
+# of the GNU Affero General Public License as published by the Free Software Foundation,    #
+# either version 3 of the License, or (at your option) any later version.                   #
+#                                                                                           #
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; #
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #
+# See the GNU Affero General Public License for more details.                               #
+#                                                                                           #
+# You should have received a copy of the GNU Affero General Public License                  #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.                    #
+#-------------------------------------------------------------------------------------eohdr-#
+el:
+  label_cmdb: "CMDB"
+
+  activerecord:
+    attributes:
+      hrzcm_location:
+        b_name_full: "Όνομα"
+        b_name_abbr: "Σύντομο όνομα"
+        b_comment: "Παρατηρήσεις"
+        b_url_doc: "Τεκμηρίωση"
+        b_key: "Κλειδί κειμένου"
+        j_type_id: "Τύπος"
+        j_part_of1_id: "Είναι μέρος του"
+        j_part_of2_id: "Είναι επίσης μέρος του"
+      hrzcm_locat_hier:
+        b_name_full: "Όνομα"
+        b_name_abbr: "Σύντομο όνομα"
+        b_comment: "Παρατηρήσεις"
+        b_url_doc: "Τεκμηρίωση"
+        b_key: "Κλειδί κειμένου"
+        j_level: "Επίπεδο ιεραρχίας"
+      hrzcm_ci_class:
+        b_name_full: "Όνομα"
+        b_name_abbr: "Σύντομο όνομα"
+        b_comment: "Παρατηρήσεις"
+        b_url_doc: "Τεκμηρίωση"
+        b_key: "Κλειδί κειμένου"
+        j_sort: "Σειρά ταξινόμησης"
+        j_subclass_of_id: "Υποκλάση"
+      hrzcm_lifecycle_status:
+        b_name_full: "Πλήρες όνομα"
+        b_name_abbr: "Συντομογραφία"
+        b_comment: "Σχόλιο"
+        b_url_doc: "URL τεκμηρίωσης"
+        b_key: "Κλειδί κειμένου"
+      hrzcm_ci:
+        b_name_full: "Πλήρες όνομα"
+        b_name_abbr: "Συντομογραφία"
+        b_comment: "Σχόλιο"
+        b_url_doc: "URL τεκμηρίωσης"
+        j_ci_class_id: "Κλάση CI"
+        j_location_id: "Τοποθεσία"
+        b_producer: "Κατασκευαστής, Προμηθευτής"
+        b_model: "Μοντέλο"
+        b_tag_serial: "Ετικέτα, Σειριακός αριθμός, Αριθμός απογραφής"
+        j_status_id: "Κατάσταση κύκλου ζωής"
+      hrzcm_ext_sys:
+        b_name_full: "Πλήρες όνομα"
+        b_name_abbr: "Συντομογραφία"
+        b_comment: "Σχόλιο"
+        b_url_doc: "URL τεκμηρίωσης"
+        b_key: "Κλειδί κειμένου"
+        b_url_ci_details_ext: "URL εξωτερικού συστήματος για λεπτομέρειες CI"
+        j_redmine_user_id: "ID χρήστη Redmine"
+        j_location_default_id: "Προεπιλεγμένη τοποθεσία"
+
+  hrz_cmdb:
+    select_item: "Επιλέξτε ένα στοιχείο από το δέντρο για να δείτε λεπτομέρειες"
+    select_type: "Επιλέξτε τύπο"
+    select_ci_class: "Επιλέξτε κλάση CI"
+    select_location: "Επιλέξτε τοποθεσία"
+    select_status: "Επιλέξτε κατάσταση κύκλου ζωής"
+
+    locations:
+      title: "Τοποθεσίες"
+      new: "Δημιουργία νέας τοποθεσίας"
+      created: "Η τοποθεσία δημιουργήθηκε επιτυχώς"
+      updated: "Η τοποθεσία ενημερώθηκε επιτυχώς"
+      deleted: "Η τοποθεσία διαγράφηκε επιτυχώς"
+
+    location_hierarchy:
+      title: "Ιεραρχία τοποθεσιών"
+      new: "Δημιουργία νέου επιπέδου ιεραρχίας"
+      created: "Το επίπεδο ιεραρχίας δημιουργήθηκε επιτυχώς"
+      updated: "Το επίπεδο ιεραρχίας ενημερώθηκε επιτυχώς"
+      deleted: "Το επίπεδο ιεραρχίας διαγράφηκε επιτυχώς"
+      has_locations: "Δεν μπορεί να διαγραφεί: το επίπεδο ιεραρχίας έχει συσχετισμένες τοποθεσίες"
+
+    ci_classes:
+      title: "Κλάσεις CI"
+      new: "Δημιουργία νέας κλάσης CI"
+      created: "Η κλάση CI δημιουργήθηκε επιτυχώς"
+      updated: "Η κλάση CI ενημερώθηκε επιτυχώς"
+      deleted: "Η κλάση CI διαγράφηκε επιτυχώς"
+      has_subclasses: "Δεν μπορεί να διαγραφεί: η κλάση CI έχει υποκλάσεις"
+      has_cis: "Δεν μπορεί να διαγραφεί: η κλάση CI χρησιμοποιείται από στοιχεία διαμόρφωσης"
+      cannot_delete_in_use: "Δεν μπορεί να διαγραφεί: η κλάση CI εξακολουθεί να χρησιμοποιείται"
+
+    cis:
+      title: "Στοιχεία Διαμόρφωσης"
+      new: "Δημιουργία νέου CI"
+      created: "Το CI δημιουργήθηκε επιτυχώς"
+      updated: "Το CI ενημερώθηκε επιτυχώς"
+      deleted: "Το CI διαγράφηκε επιτυχώς"
+
+    cis_by_class:
+      title: "CI ανά κλάση"
+
+    lifecycle_statuses:
+      title: "Καταστάσεις κύκλου ζωής"
+      new: "Δημιουργία νέας κατάστασης κύκλου ζωής"
+      created: "Η κατάσταση κύκλου ζωής δημιουργήθηκε επιτυχώς"
+      updated: "Η κατάσταση κύκλου ζωής ενημερώθηκε επιτυχώς"
+      deleted: "Η κατάσταση κύκλου ζωής διαγράφηκε επιτυχώς"
+
+    external_systems:
+      title: "Εξωτερικά συστήματα"
+      new: "Δημιουργία νέου εξωτερικού συστήματος"
+      created: "Το εξωτερικό σύστημα δημιουργήθηκε επιτυχώς"
+      updated: "Το εξωτερικό σύστημα ενημερώθηκε επιτυχώς"
+      deleted: "Το εξωτερικό σύστημα διαγράφηκε επιτυχώς"
+
+    basic_data:
+      title: "Βασικά δεδομένα"
+
+    fields:
+      bezeichnung: "Όνομα"
+      kurzbezeichnung: "Σύντομο όνομα"
+      bemerkungen: "Παρατηρήσεις"
+      dokumentation: "Τεκμηρίωση"
+      b_name_full: "Πλήρες όνομα"
+      b_name_abbr: "Συντομογραφία"
+      b_comment: "Σχόλιο"
+      b_url_doc: "URL τεκμηρίωσης"
+      b_key: "Κλειδί κειμένου"
+      j_level: "Επίπεδο ιεραρχίας"
+      j_sort: "Σειρά ταξινόμησης"
+      j_subclass_of: "Υποκλάση"
+      type: "Τύπος"
+      part_of1: "Είναι μέρος του"
+      part_of2: "Είναι επίσης μέρος του"
+      j_ci_class: "Κλάση CI"
+      j_location: "Τοποθεσία"
+      b_producer: "Κατασκευαστής, Προμηθευτής"
+      b_model: "Μοντέλο"
+      b_tag_serial: "Ετικέτα, Σειριακός αριθμός, Αριθμός απογραφής"
+      j_status: "Κατάσταση κύκλου ζωής"
+      b_url_ci_details_ext: "URL εξωτερικού συστήματος για λεπτομέρειες CI"
+      j_redmine_user_id: "ID χρήστη Redmine"
+      j_location_default_id: "Προεπιλεγμένη τοποθεσία"
+
+    hints:
+      dokumentation: "Οποιοδήποτε URL. Για άρθρα TikiWiki, απλά το πρόθεμα tiki: ακολουθούμενο από το όνομα της σελίδας."
+      b_url_doc: "Οποιοδήποτε URL. Για άρθρα TikiWiki, απλά το πρόθεμα tiki: ακολουθούμενο από το όνομα της σελίδας."
+      b_key_hierarchy: "Μοναδικό κλειδί κειμένου"
+      b_key_location: "Π.χ. για χώρες ο κωδικός ISO 3166-1."
+      b_key_ci_class: "Μοναδικό κλειδί κειμένου"
+      b_key_lifecycle_status: "Μοναδικό κλειδί κειμένου"
+      j_level: "Καθορίζει τη σειρά ταξινόμησης π.χ. από 10=Πλανήτης Γη / 20=Ήπειρος σε βήματα των δέκα έως 5000: Ντουλάπι"
+      j_sort: "Οποιοσδήποτε αριθμός. Οι εγγραφές ταξινομούνται κατά αύξοντα αριθμό. Για ίσους αριθμούς κατά σύντομο όνομα."
+      b_url_ci_details_ext: "URL για εμφάνιση λεπτομερειών CI σε αυτό το εξωτερικό σύστημα. Το κείμενο \"${key_ext}\" θα αντικατασταθεί με το κλειδί του εξωτερικού συστήματος. Παράδειγμα: \"https://ext_cmdb.local/disp?key=${key_ext}\""
+      j_redmine_user_id: "Χρήστης Redmine που χρησιμοποιεί το εξωτερικό σύστημα για έλεγχο ταυτότητας για συγχρονισμό δεδομένων."
+      j_location_default_id: "Εάν ένα εξωτερικό σύστημα περιέχει μόνο CI από συγκεκριμένη τοποθεσία ή δεν παρέχει πληροφορίες τοποθεσίας, η τοποθεσία που καθορίζεται εδώ θα χρησιμοποιείται για όλα τα CI που αναφέρονται από αυτό το εξωτερικό σύστημα."
+      select_user: "Επιλέξτε χρήστη"
+
+    status_info:
+      title: "Πληροφορίες κατάστασης"
+      record_id: "ID εγγραφής"
+      created_by: "Δημιουργήθηκε από"
+      updated_by: "τελευταία ενημέρωση από"
+      at: "στις"
+      new_record: "Νέα εγγραφή (δεν έχει αποθηκευτεί ακόμα)"
+
+    buttons:
+      save: "Αποθήκευση αλλαγών"
+      save_continue: "Αποθήκευση αλλαγών, συνέχεια"
+      save_as_copy: "Αποθήκευση ως αντίγραφο"
+      cancel: "Ακύρωση"
+      create: "Δημιουργία νέας εγγραφής"
+      delete: "Διαγραφή"
+      open_url: "Άνοιγμα URL"
+      back: "Πίσω"
+
+    confirm:
+      delete_location: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την τοποθεσία;"
+      delete_ci_class: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την κλάση CI;"
+      delete_ci: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το CI;"
+      delete_lifecycle_status: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την κατάσταση κύκλου ζωής;"
+      delete_ext_sys: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το εξωτερικό σύστημα;"
+      delete_hierarchy: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το επίπεδο ιεραρχίας;"
+
+    errors:
+      b_key_not_unique_for_type: "πρέπει να είναι μοναδικό εντός του τύπου"
+      access_denied: "Δεν επιτρέπεται η πρόσβαση"
+
+    settings:
+      tiki_url_title: "TikiWiki βασικό URL"
+      tiki_url_hint: "Βασικό URL για συνδέσμους TikiWiki (π.χ. https://tikiwiki.local/x?page=)"
+
+    permissions:
+      title: "HRZ CMDB Δικαιώματα"
+      view_cmdb: "Προβολή CMDB"
+      edit_cmdb: "Επεξεργασία CMDB"
+      edit_basic_data: "Επεξεργασία βασικών δεδομένων"
+      admin_note: "Σημείωση: Οι διαχειριστές έχουν αυτόματα όλα τα δικαιώματα."
+      view_cmdb_hint: "Επιλέξτε ομάδες που μπορούν να προβάλλουν δεδομένα CMDB"
+      edit_cmdb_hint: "Επιλέξτε ομάδες που μπορούν να επεξεργαστούν τοποθεσίες CMDB"
+      edit_basic_data_hint: "Επιλέξτε ομάδες που μπορούν να επεξεργαστούν βασικά δεδομένα (επίπεδα ιεραρχίας)"
+
+    settings:
+      title: "Ρυθμίσεις"
+
+    seed_data:
+      title: "Διαχείριση Αρχικών Δεδομένων"
+      menu_title: "Αρχικά Δεδομένα"
+      add_title: "Προσθήκη Αρχικών Δεδομένων"
+      add_description: "Προσθέτει προκαθορισμένα βασικά δεδομένα (επίπεδα ιεραρχίας τοποθεσίας, κλάσεις CI, καταστάσεις κύκλου ζωής). Οι υπάρχουσες εγγραφές (που προσδιορίζονται από b_key) θα παραλειφθούν."
+      add_button: "Προσθήκη Αρχικών Δεδομένων"
+      add_confirm: "Είστε βέβαιοι ότι θέλετε να προσθέσετε αρχικά δεδομένα; Οι υπάρχουσες εγγραφές θα διατηρηθούν."
+      remove_title: "Αφαίρεση Μη Χρησιμοποιούμενων Αρχικών Δεδομένων"
+      remove_description: "Αφαιρεί εγγραφές αρχικών δεδομένων που δεν αναφέρονται από ξένα κλειδιά. Οι αναφερόμενες εγγραφές θα διατηρηθούν."
+      remove_button: "Αφαίρεση Μη Χρησιμοποιούμενων Αρχικών Δεδομένων"
+      remove_confirm: "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε μη χρησιμοποιούμενα αρχικά δεδομένα; Μόνο οι μη αναφερόμενες εγγραφές θα διαγραφούν."
+      add_result_title: "Αποτελέσματα Προσθήκης Αρχικών Δεδομένων"
+      remove_result_title: "Αποτελέσματα Αφαίρεσης Αρχικών Δεδομένων"
+      model: "Μοντέλο"
+      inserted: "Εισήχθησαν"
+      skipped: "Παραλείφθηκαν (υπάρχουν ήδη)"
+      deleted: "Διαγράφηκαν"
+      kept: "Διατηρήθηκαν (σε χρήση)"
+      errors_count: "Σφάλματα"
+      errors_title: "Σφάλματα"
+      models:
+        hrzcm_locat_hier: "Επίπεδα Ιεραρχίας Τοποθεσίας"
+        hrzcm_ci_class: "Κλάσεις CI"
+        hrzcm_lifecycle_status: "Καταστάσεις Κύκλου Ζωής"
+
+    info:
+      title: "Πληροφορίες Πρόσθετου"
+      menu_title: "Πληροφορίες"
+      plugin_info: "Πληροφορίες Πρόσθετου"
+      plugin_name: "Όνομα"
+      version: "Έκδοση"
+      url: "URL"
+      statistics: "Στατιστικά"
+      entity: "Οντότητα"
+      count: "Αριθμός"
+      entities:
+        ci_classes: "Κλάσεις CI"
+        cis: "Στοιχεία Διαμόρφωσης"
+        lifecycle_statuses: "Καταστάσεις Κύκλου Ζωής"
+        location_hierarchies: "Επίπεδα Ιεραρχίας Τοποθεσίας"
+        locations: "Τοποθεσίες"
+
+  # Issue CI Integration
+  label_configuration_items: "Στοιχεία Διαμόρφωσης"
+  label_configuration_item: "Στοιχείο Διαμόρφωσης"
+  label_add_ci: "Προσθήκη CI"
+  label_select_ci: "Επιλογή CI"
+  label_no_cis_linked: "Δεν υπάρχουν συνδεδεμένα στοιχεία διαμόρφωσης"
+  label_ci_class: "Κλάση CI"
+  label_location: "Τοποθεσία"
+  label_lifecycle_status: "Κατάσταση Κύκλου Ζωής"
+  label_loading: "Φόρτωση"
+  notice_ci_added: "Το CI προστέθηκε επιτυχώς"
+  notice_ci_removed: "Το CI αφαιρέθηκε επιτυχώς"
+  error_ci_not_found: "Το CI δεν βρέθηκε"
+  label_ci_added: "προστέθηκε: %{new_value}"
+  label_ci_deleted: "αφαιρέθηκε: %{old_value}"
+
+  # Project module permissions
+  project_module:
+    cmdb: "CMDB"
+  permission_view_issue_cis: "Προβολή CI σε ζητήματα"
+  permission_manage_issue_cis: "Διαχείριση CI σε ζητήματα"

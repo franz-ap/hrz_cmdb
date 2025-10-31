@@ -1,0 +1,281 @@
+#-------------------------------------------------------------------------------------------#
+# Redmine CMDB plugin: Configuration Management DataBase                                    #
+# Copyright (C) 2025 Franz Apeltauer                                                        #
+#                                                                                           #
+# This program is free software: you can redistribute it and/or modify it under the terms   #
+# of the GNU Affero General Public License as published by the Free Software Foundation,    #
+# either version 3 of the License, or (at your option) any later version.                   #
+#                                                                                           #
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; #
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #
+# See the GNU Affero General Public License for more details.                               #
+#                                                                                           #
+# You should have received a copy of the GNU Affero General Public License                  #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.                    #
+#-------------------------------------------------------------------------------------eohdr-#
+ro:
+  label_cmdb: "CMDB"
+
+  activerecord:
+    attributes:
+      hrzcm_location:
+        b_name_full: "Denumire"
+        b_name_abbr: "Denumire scurtă"
+        b_comment: "Observații"
+        b_url_doc: "Documentație"
+        b_key: "Cheie text"
+        j_type_id: "Tip"
+        j_part_of1_id: "Face parte din"
+        j_part_of2_id: "Face și parte din"
+      hrzcm_locat_hier:
+        b_name_full: "Denumire"
+        b_name_abbr: "Denumire scurtă"
+        b_comment: "Observații"
+        b_url_doc: "Documentație"
+        b_key: "Cheie text"
+        j_level: "Nivel ierarhic"
+      hrzcm_ci_class:
+        b_name_full: "Denumire"
+        b_name_abbr: "Denumire scurtă"
+        b_comment: "Observații"
+        b_url_doc: "Documentație"
+        b_key: "Cheie text"
+        j_sort: "Ordine sortare"
+        j_subclass_of_id: "Subclasă"
+      hrzcm_lifecycle_status:
+        b_name_full: "Denumire completă"
+        b_name_abbr: "Abreviere"
+        b_comment: "Comentariu"
+        b_url_doc: "URL documentație"
+        b_key: "Cheie text"
+      hrzcm_ci:
+        b_name_full: "Denumire completă"
+        b_name_abbr: "Abreviere"
+        b_comment: "Comentariu"
+        b_url_doc: "URL documentație"
+        j_ci_class_id: "Clasă CI"
+        j_location_id: "Locație"
+        b_producer: "Producător, Furnizor"
+        b_model: "Model"
+        b_tag_serial: "Etichetă, Număr de serie, Număr inventar"
+        j_status_id: "Stare ciclu de viață"
+      hrzcm_ext_sys:
+        b_name_full: "Nume complet"
+        b_name_abbr: "Abreviere"
+        b_comment: "Comentariu"
+        b_url_doc: "URL documentație"
+        b_key: "Cheie text"
+        b_url_ci_details_ext: "URL sistem extern pentru detalii CI"
+        j_redmine_user_id: "ID utilizator Redmine"
+        j_location_default_id: "Locație implicită"
+
+  hrz_cmdb:
+    select_item: "Selectați un element din arbore pentru a vizualiza detaliile"
+    select_type: "Selectați tipul"
+    select_ci_class: "Selectați clasa CI"
+    select_location: "Selectați locația"
+    select_status: "Selectați starea ciclului de viață"
+
+    locations:
+      title: "Locații"
+      new: "Creați o locație nouă"
+      created: "Locație creată cu succes"
+      updated: "Locație actualizată cu succes"
+      deleted: "Locație ștearsă cu succes"
+
+    location_hierarchy:
+      title: "Ierarhie locații"
+      new: "Creați un nivel ierarhic nou"
+      created: "Nivel ierarhic creat cu succes"
+      updated: "Nivel ierarhic actualizat cu succes"
+      deleted: "Nivel ierarhic șters cu succes"
+      has_locations: "Nu poate fi șters: nivelul ierarhic are locații asociate"
+
+    ci_classes:
+      title: "Clase CI"
+      new: "Creați o clasă CI nouă"
+      created: "Clasă CI creată cu succes"
+      updated: "Clasă CI actualizată cu succes"
+      deleted: "Clasă CI ștearsă cu succes"
+      has_subclasses: "Nu poate fi ștearsă: clasa CI are subclase"
+      has_cis: "Nu poate fi ștearsă: clasa CI este utilizată de elemente de configurare"
+      cannot_delete_in_use: "Nu poate fi ștearsă: clasa CI este încă în uz"
+
+    cis:
+      title: "Elemente de Configurare"
+      new: "Creați un CI nou"
+      created: "CI creat cu succes"
+      updated: "CI actualizat cu succes"
+      deleted: "CI șters cu succes"
+
+    cis_by_class:
+      title: "CI-uri pe clase"
+
+    lifecycle_statuses:
+      title: "Stări ciclu de viață"
+      new: "Creați o stare ciclu de viață nouă"
+      created: "Stare ciclu de viață creată cu succes"
+      updated: "Stare ciclu de viață actualizată cu succes"
+      deleted: "Stare ciclu de viață ștearsă cu succes"
+
+    external_systems:
+      title: "Sisteme externe"
+      new: "Creează sistem extern nou"
+      created: "Sistem extern creat cu succes"
+      updated: "Sistem extern actualizat cu succes"
+      deleted: "Sistem extern șters cu succes"
+
+    basic_data:
+      title: "Date de bază"
+
+    fields:
+      bezeichnung: "Denumire"
+      kurzbezeichnung: "Denumire scurtă"
+      bemerkungen: "Observații"
+      dokumentation: "Documentație"
+      b_name_full: "Nume complet"
+      b_name_abbr: "Abreviere"
+      b_comment: "Comentariu"
+      b_url_doc: "URL documentație"
+      b_key: "Cheie text"
+      j_level: "Nivel ierarhic"
+      j_sort: "Ordine sortare"
+      j_subclass_of: "Subclasă"
+      type: "Tip"
+      part_of1: "Face parte din"
+      part_of2: "Face și parte din"
+      j_ci_class: "Clasă CI"
+      j_location: "Locație"
+      b_producer: "Producător, Furnizor"
+      b_model: "Model"
+      b_tag_serial: "Etichetă, Număr de serie, Număr inventar"
+      j_status: "Stare ciclu de viață"
+      b_url_ci_details_ext: "URL sistem extern pentru detalii CI"
+      j_redmine_user_id: "ID utilizator Redmine"
+      j_location_default_id: "Locație implicită"
+
+    hints:
+      dokumentation: "Orice URL. Pentru articole TikiWiki, doar prefixul tiki: urmat de numele paginii."
+      b_key_hierarchy: "Cheie text unică"
+      b_key_location: "De ex. pentru țări codul ISO 3166-1."
+      b_key_ci_class: "Cheie text unică"
+      b_key_lifecycle_status: "Cheie text unică"
+      j_level: "Determină ordinea de sortare de ex. de la 10=Planeta Pământ / 20=Continent în pași de zece până la 5000: Dulap"
+      j_sort: "Orice număr. Înregistrările sunt sortate după acest număr crescător. Pentru numere egale după denumirea scurtă."
+      b_url_doc: "Orice URL. Pentru articole TikiWiki, doar prefixul tiki: urmat de numele paginii."
+      b_url_ci_details_ext: "URL pentru afișarea detaliilor CI în acest sistem extern. Textul \"${key_ext}\" va fi înlocuit cu cheia sistemului extern. Exemplu: \"https://ext_cmdb.local/disp?key=${key_ext}\""
+      j_redmine_user_id: "Utilizator Redmine pe care sistemul extern îl folosește pentru autentificare pentru sincronizarea datelor."
+      j_location_default_id: "Dacă un sistem extern conține doar CI-uri dintr-o anumită locație sau nu furnizează informații despre locație, locația specificată aici va fi utilizată pentru toate CI-urile raportate de acest sistem extern."
+      select_user: "Selectați utilizatorul"
+
+    status_info:
+      title: "Informații despre stare"
+      record_id: "ID înregistrare"
+      created_by: "Creat de"
+      updated_by: "ultima actualizare de"
+      at: "la"
+      new_record: "Înregistrare nouă (încă nesalvată)"
+
+    buttons:
+      save: "Salvați modificările"
+      save_continue: "Salvați modificările, continuați"
+      save_as_copy: "Salvați ca copie"
+      cancel: "Anulați"
+      create: "Creați intrare nouă"
+      delete: "Ștergeți"
+      open_url: "Deschideți URL"
+      back: "Înapoi"
+
+    confirm:
+      delete_location: "Sigur doriți să ștergeți această locație?"
+      delete_ci_class: "Sigur doriți să ștergeți această clasă CI?"
+      delete_ci: "Sigur doriți să ștergeți acest CI?"
+      delete_lifecycle_status: "Sigur doriți să ștergeți acest status al ciclului de viață?"
+      delete_ext_sys: "Sigur doriți să ștergeți acest sistem extern?"
+      delete_hierarchy: "Sigur doriți să ștergeți acest nivel de ierarhie?"
+
+    errors:
+      b_key_not_unique_for_type: "trebuie să fie unică în cadrul tipului"
+      access_denied: "Acces interzis"
+
+
+    settings:
+      tiki_url_title: "TikiWiki URL de bază"
+      tiki_url_hint: "URL de bază pentru linkuri TikiWiki (de ex. https://tikiwiki.local/x?page=)"
+
+    permissions:
+      title: "HRZ CMDB Permisiuni"
+      view_cmdb: "Vizualizare CMDB"
+      edit_cmdb: "Editare CMDB"
+      edit_basic_data: "Editare date de bază"
+      admin_note: "Notă: Administratorii au automat toate permisiunile."
+      view_cmdb_hint: "Selectați grupurile care pot vizualiza datele CMDB"
+      edit_cmdb_hint: "Selectați grupurile care pot edita locațiile CMDB"
+      edit_basic_data_hint: "Selectați grupurile care pot edita datele de bază (niveluri de ierarhie)"
+
+    settings:
+      title: "Setări"
+
+    seed_data:
+      title: "Gestionarea datelor inițiale"
+      menu_title: "Date inițiale"
+      add_title: "Adăugarea datelor inițiale"
+      add_description: "Adaugă date de bază predefinite (niveluri de ierarhie de locații, clase CI, stări ale ciclului de viață). Înregistrările existente (identificate prin b_key) vor fi omise."
+      add_button: "Adaugă date inițiale"
+      add_confirm: "Sigur doriți să adăugați date inițiale? Înregistrările existente vor fi păstrate."
+      remove_title: "Eliminarea datelor inițiale nefolosite"
+      remove_description: "Elimină înregistrările de date inițiale care nu sunt referențiate de chei externe. Înregistrările referențiate vor fi păstrate."
+      remove_button: "Elimină datele inițiale nefolosite"
+      remove_confirm: "Sigur doriți să eliminați datele inițiale nefolosite? Doar înregistrările nereferențiate vor fi șterse."
+      add_result_title: "Rezultatele adăugării datelor inițiale"
+      remove_result_title: "Rezultatele eliminării datelor inițiale"
+      model: "Model"
+      inserted: "Inserate"
+      skipped: "Omise (există deja)"
+      deleted: "Șterse"
+      kept: "Păstrate (în uz)"
+      errors_count: "Erori"
+      errors_title: "Erori"
+      models:
+        hrzcm_locat_hier: "Niveluri ierarhie locații"
+        hrzcm_ci_class: "Clase CI"
+        hrzcm_lifecycle_status: "Stări ciclu de viață"
+
+    info:
+      title: "Informații despre plugin"
+      menu_title: "Info"
+      plugin_info: "Informații despre plugin"
+      plugin_name: "Nume"
+      version: "Versiune"
+      url: "URL"
+      statistics: "Statistici"
+      entity: "Entitate"
+      count: "Număr"
+      entities:
+        ci_classes: "Clase CI"
+        cis: "Elemente de configurare"
+        lifecycle_statuses: "Stări ciclu de viață"
+        location_hierarchies: "Niveluri ierarhie locații"
+        locations: "Locații"
+
+  # Issue CI Integration
+  label_configuration_items: "Elemente de Configurare"
+  label_add_ci: "Adaugă CI"
+  label_select_ci: "Selectați CI"
+  label_no_cis_linked: "Niciun element de configurare asociat"
+  label_ci_class: "Clasă CI"
+  label_location: "Locație"
+  label_lifecycle_status: "Stare Ciclu de Viață"
+  label_loading: "Se încarcă"
+  notice_ci_added: "CI adăugat cu succes"
+  notice_ci_removed: "CI eliminat cu succes"
+  error_ci_not_found: "CI nu a fost găsit"
+  label_configuration_item: "Element de configurare"
+  label_ci_added: "adăugat: %{new_value}"
+  label_ci_deleted: "șters: %{old_value}"
+
+  # Project module permissions
+  project_module:
+    cmdb: "CMDB"
+  permission_view_issue_cis: "Vizualizare CI în probleme"
+  permission_manage_issue_cis: "Gestionare CI în probleme"

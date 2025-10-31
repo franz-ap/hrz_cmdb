@@ -1,0 +1,98 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Form partial for creating and editing location entries.
+            Allows setting location type, parent locations, names, and documentation links. %>
+
+<div class="location-form-container">
+  <h3><%= l('hrz_cmdb.locations.new') %></h3>
+
+  <%= form_tag cmdb_index_path + '/location', method: :post, id: 'new-location-form', class: 'location-form' do %>
+    <div class="form-group">
+      <%= label_tag :b_name_full, l('hrz_cmdb.fields.b_name_full') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'location[b_name_full]', '', class: 'form-control', maxlength: 120 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_name_abbr, l('hrz_cmdb.fields.b_name_abbr') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'location[b_name_abbr]', '', class: 'form-control form-control-short', maxlength: 15 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_key, l('hrz_cmdb.fields.b_key') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'location[b_key]', '', class: 'form-control form-control-short' %>
+        <span class="hint"><%= l('hrz_cmdb.hints.b_key_location') %></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :j_type_id, l('hrz_cmdb.fields.type') %>
+      <div class="field-wrapper">
+        <%= select_tag 'location[j_type_id]',
+            options_from_collection_for_select(HrzcmLocatHier.ordered_by_level, :id, :b_name_abbr),
+            prompt: l('hrz_cmdb.select_type'),
+            class: 'form-control', required: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :j_part_of1_id, l('hrz_cmdb.fields.part_of1') %>
+      <div class="field-wrapper">
+        <%= select_tag 'location[j_part_of1_id]',
+            options_from_collection_for_select(HrzcmLocation.ordered_by_b_name_abbr, :id, :display_name),
+            include_blank: true,
+            class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :j_part_of2_id, l('hrz_cmdb.fields.part_of2') %>
+      <div class="field-wrapper">
+        <%= select_tag 'location[j_part_of2_id]',
+            options_from_collection_for_select(HrzcmLocation.ordered_by_b_name_abbr, :id, :display_name),
+            include_blank: true,
+            class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_comment, l('hrz_cmdb.fields.b_comment') %>
+      <div class="field-wrapper">
+        <%= text_area_tag 'location[b_comment]', '', class: 'form-control', rows: 5, maxlength: 10000 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_url_doc, l('hrz_cmdb.fields.b_url_doc') %>
+      <div class="field-wrapper">
+        <div class="url-field-container">
+          <%= text_field_tag 'location[b_url_doc]', '', class: 'form-control url-field', maxlength: 1500 %>
+          <span class="url-open-icon disabled" title="<%= l('hrz_cmdb.buttons.open_url', default: 'Open URL') %>"></span>
+        </div>
+        <span class="hint"><%= l('hrz_cmdb.hints.b_url_doc') %></span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag l('hrz_cmdb.buttons.create'), class: 'button button-positive', name: 'create' %>
+      <%= link_to l('hrz_cmdb.buttons.cancel'), '#', class: 'button', onclick: 'HrzCmdb.clearDetails(); return false;' %>
+    </div>
+  <% end %>
+</div>

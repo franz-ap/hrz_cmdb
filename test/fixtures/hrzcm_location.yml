@@ -1,0 +1,56 @@
+# Locations
+main_building:
+  id: 1
+  b_name_full: Main Building
+  b_name_abbr: MB
+  b_key: main
+  j_type_id: 1  # building
+  j_part_of1_id: ~
+  j_part_of2_id: ~
+  b_comment: Main office building
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+first_floor:
+  id: 2
+  b_name_full: First Floor
+  b_name_abbr: 1F
+  b_key: first
+  j_type_id: 2  # floor
+  j_part_of1_id: 1  # main_building
+  j_part_of2_id: ~
+  b_comment: First floor of main building
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+room_101:
+  id: 3
+  b_name_full: Room 101
+  b_name_abbr: 101
+  b_key: r101
+  j_type_id: 3  # room
+  j_part_of1_id: 2  # first_floor
+  j_part_of2_id: ~
+  b_comment: Server room
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+room_102:
+  id: 4
+  b_name_full: Room 102
+  b_name_abbr: 102
+  b_key: r102
+  j_type_id: 3  # room
+  j_part_of1_id: 2  # first_floor
+  j_part_of2_id: ~
+  b_comment: Office
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00

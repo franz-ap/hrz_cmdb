@@ -1,0 +1,153 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Displays the results of seed data add or remove operations with statistics. %>
+
+<div class="seed-data-result <%= operation == 'add' ? 'add-result' : 'remove-result' %>">
+  <h4>
+    <%= operation == 'add' ? l('hrz_cmdb.seed_data.add_result_title') : l('hrz_cmdb.seed_data.remove_result_title') %>
+  </h4>
+
+  <% if operation == 'add' %>
+    <!-- Add operation results -->
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= l('hrz_cmdb.seed_data.model') %></th>
+          <th><%= l('hrz_cmdb.seed_data.inserted') %></th>
+          <th><%= l('hrz_cmdb.seed_data.skipped') %></th>
+          <th><%= l('hrz_cmdb.seed_data.errors_count') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% stats[:inserted].keys.each do |model_name| %>
+          <tr>
+            <td><%= l("hrz_cmdb.seed_data.models.#{model_name}") %></td>
+            <td class="count-cell"><%= stats[:inserted][model_name] %></td>
+            <td class="count-cell"><%= stats[:skipped][model_name] %></td>
+            <td class="count-cell <%= stats[:errors][model_name].any? ? 'error-count' : '' %>">
+              <%= stats[:errors][model_name].count %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <!-- Show errors if any -->
+    <% if stats[:errors].values.flatten.any? %>
+      <div class="errors-section">
+        <h5><%= l('hrz_cmdb.seed_data.errors_title') %></h5>
+        <% stats[:errors].each do |model_name, errors| %>
+          <% if errors.any? %>
+            <strong><%= l("hrz_cmdb.seed_data.models.#{model_name}") %>:</strong>
+            <ul>
+              <% errors.each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+  <% else %>
+    <!-- Remove operation results -->
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= l('hrz_cmdb.seed_data.model') %></th>
+          <th><%= l('hrz_cmdb.seed_data.deleted') %></th>
+          <th><%= l('hrz_cmdb.seed_data.kept') %></th>
+          <th><%= l('hrz_cmdb.seed_data.errors_count') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% stats[:deleted].keys.each do |model_name| %>
+          <tr>
+            <td><%= l("hrz_cmdb.seed_data.models.#{model_name}") %></td>
+            <td class="count-cell"><%= stats[:deleted][model_name] %></td>
+            <td class="count-cell"><%= stats[:kept][model_name] %></td>
+            <td class="count-cell <%= stats[:errors][model_name].any? ? 'error-count' : '' %>">
+              <%= stats[:errors][model_name].count %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <!-- Show errors if any -->
+    <% if stats[:errors].values.flatten.any? %>
+      <div class="errors-section">
+        <h5><%= l('hrz_cmdb.seed_data.errors_title') %></h5>
+        <% stats[:errors].each do |model_name, errors| %>
+          <% if errors.any? %>
+            <strong><%= l("hrz_cmdb.seed_data.models.#{model_name}") %>:</strong>
+            <ul>
+              <% errors.each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="button-group">
+    <%= link_to l('hrz_cmdb.buttons.back'), 'javascript:void(0)',
+                onclick: "$('#seed-data-result').empty(); return false;",
+                class: 'button' %>
+  </div>
+</div>
+
+<style>
+.seed-data-result {
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.seed-data-result h4 {
+  margin-top: 0;
+}
+
+.count-cell {
+  text-align: center;
+  font-weight: bold;
+}
+
+.error-count {
+  color: #d00;
+}
+
+.errors-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffe;
+  border: 1px solid #fc0;
+  border-radius: 4px;
+}
+
+.errors-section h5 {
+  margin-top: 0;
+  color: #c30;
+}
+
+.errors-section ul {
+  margin-bottom: 0;
+}
+</style>

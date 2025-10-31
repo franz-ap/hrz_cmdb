@@ -1,0 +1,52 @@
+# CI Classes
+hardware:
+  id: 1
+  b_name_full: Hardware
+  b_name_abbr: HW
+  b_key: hardware
+  j_sort: 10
+  j_subclass_of_id: ~
+  b_comment: Physical hardware devices
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+server:
+  id: 2
+  b_name_full: Server
+  b_name_abbr: SRV
+  b_key: server
+  j_sort: 20
+  j_subclass_of_id: 1  # hardware
+  b_comment: Server hardware
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+workstation:
+  id: 3
+  b_name_full: Workstation
+  b_name_abbr: WS
+  b_key: workstation
+  j_sort: 30
+  j_subclass_of_id: 1  # hardware
+  b_comment: Desktop and laptop computers
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+software:
+  id: 4
+  b_name_full: Software
+  b_name_abbr: SW
+  b_key: software
+  j_sort: 40
+  j_subclass_of_id: ~
+  b_comment: Software and applications
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00

@@ -1,0 +1,126 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Plugin settings page for configuring group-based permissions and integration options.
+            Allows admins to assign CMDB permissions to Redmine groups and configure TikiWiki integration. %>
+
+<div class="flash notice" style="margin-bottom: 20px;">
+  <span class="icon icon-info"></span>
+  <%= l('hrz_cmdb.permissions.admin_note', default: 'Note: Administrators automatically have all permissions.') %>
+</div>
+
+<div class="permission-section">
+  <h4><%= l('hrz_cmdb.settings.tiki_url_title', default: 'TikiWiki Base URL') %></h4>
+  <p class="permission-hint"><%= l('hrz_cmdb.settings.tiki_url_hint', default: 'Base URL for TikiWiki links (e.g., https://tikiwiki.local/x?page=)') %></p>
+  <div class="permission-controls">
+    <%= text_field_tag 'settings[tiki_base_url]',
+        Setting.plugin_hrz_cmdb['tiki_base_url'],
+        class: 'tiki-url-input',
+        placeholder: 'https://tikiwiki.local/x?page=' %>
+  </div>
+</div>
+
+<%
+  # Load existing permissions from settings
+  view_groups = HrzCmdb::PermissionHelper.groups_for_permission('view_cmdb')
+  edit_groups = HrzCmdb::PermissionHelper.groups_for_permission('edit_cmdb')
+  basic_groups = HrzCmdb::PermissionHelper.groups_for_permission('edit_basic_data')
+%>
+
+<div class="permission-section">
+  <h4><%= l('hrz_cmdb.permissions.view_cmdb') %></h4>
+  <p class="permission-hint"><%= l('hrz_cmdb.permissions.view_cmdb_hint', default: 'Select groups that can view CMDB data') %></p>
+  <div class="permission-controls">
+    <%= select_tag 'settings[view_cmdb_groups]',
+        options_from_collection_for_select(Group.sorted, :id, :name, view_groups),
+        multiple: true,
+        size: 8,
+        class: 'group-select' %>
+  </div>
+</div>
+
+<div class="permission-section">
+  <h4><%= l('hrz_cmdb.permissions.edit_cmdb') %></h4>
+  <p class="permission-hint"><%= l('hrz_cmdb.permissions.edit_cmdb_hint', default: 'Select groups that can edit CMDB locations') %></p>
+  <div class="permission-controls">
+    <%= select_tag 'settings[edit_cmdb_groups]',
+        options_from_collection_for_select(Group.sorted, :id, :name, edit_groups),
+        multiple: true,
+        size: 8,
+        class: 'group-select' %>
+  </div>
+</div>
+
+<div class="permission-section">
+  <h4><%= l('hrz_cmdb.permissions.edit_basic_data') %></h4>
+  <p class="permission-hint"><%= l('hrz_cmdb.permissions.edit_basic_data_hint', default: 'Select groups that can edit basic data (hierarchy levels)') %></p>
+  <div class="permission-controls">
+    <%= select_tag 'settings[edit_basic_data_groups]',
+        options_from_collection_for_select(Group.sorted, :id, :name, basic_groups),
+        multiple: true,
+        size: 8,
+        class: 'group-select' %>
+  </div>
+</div>
+
+<style>
+  .permission-section {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    border-radius: 3px;
+  }
+
+  .permission-section h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  .permission-hint {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 0.9em;
+  }
+
+  .permission-controls {
+    margin-left: 0;
+  }
+
+  .group-select {
+    width: 100%;
+    max-width: 500px;
+    min-width: 300px;
+  }
+
+  .group-select option {
+    padding: 3px;
+  }
+
+  .group-select option:checked {
+    background: #628DB6 linear-gradient(0deg, #628DB6 0%, #628DB6 100%);
+    color: white;
+  }
+
+  .tiki-url-input {
+    width: 100%;
+    max-width: 600px;
+    padding: 6px 10px;
+    border: 1px solid #d7d7d7;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+</style>

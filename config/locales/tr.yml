@@ -1,0 +1,281 @@
+#-------------------------------------------------------------------------------------------#
+# Redmine CMDB plugin: Configuration Management DataBase                                    #
+# Copyright (C) 2025 Franz Apeltauer                                                        #
+#                                                                                           #
+# This program is free software: you can redistribute it and/or modify it under the terms   #
+# of the GNU Affero General Public License as published by the Free Software Foundation,    #
+# either version 3 of the License, or (at your option) any later version.                   #
+#                                                                                           #
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; #
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #
+# See the GNU Affero General Public License for more details.                               #
+#                                                                                           #
+# You should have received a copy of the GNU Affero General Public License                  #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.                    #
+#-------------------------------------------------------------------------------------eohdr-#
+tr:
+  label_cmdb: "CMDB"
+
+  activerecord:
+    attributes:
+      hrzcm_location:
+        b_name_full: "Ad"
+        b_name_abbr: "Kısa ad"
+        b_comment: "Notlar"
+        b_url_doc: "Dokümantasyon"
+        b_key: "Metin anahtarı"
+        j_type_id: "Tip"
+        j_part_of1_id: "Şunun parçası"
+        j_part_of2_id: "Ayrıca şunun parçası"
+      hrzcm_locat_hier:
+        b_name_full: "Ad"
+        b_name_abbr: "Kısa ad"
+        b_comment: "Notlar"
+        b_url_doc: "Dokümantasyon"
+        b_key: "Metin anahtarı"
+        j_level: "Hiyerarşi seviyesi"
+      hrzcm_ci_class:
+        b_name_full: "Ad"
+        b_name_abbr: "Kısa ad"
+        b_comment: "Notlar"
+        b_url_doc: "Dokümantasyon"
+        b_key: "Metin anahtarı"
+        j_sort: "Sıralama düzeni"
+        j_subclass_of_id: "Alt sınıfı"
+      hrzcm_lifecycle_status:
+        b_name_full: "Tam ad"
+        b_name_abbr: "Kısaltma"
+        b_comment: "Yorum"
+        b_url_doc: "Dokümantasyon URL'si"
+        b_key: "Metin anahtarı"
+      hrzcm_ci:
+        b_name_full: "Tam ad"
+        b_name_abbr: "Kısaltma"
+        b_comment: "Yorum"
+        b_url_doc: "Dokümantasyon URL'si"
+        j_ci_class_id: "CI sınıfı"
+        j_location_id: "Konum"
+        b_producer: "Üretici, Tedarikçi"
+        b_model: "Model"
+        b_tag_serial: "Etiket, Seri Numarası, Envanter Numarası"
+        j_status_id: "Yaşam döngüsü durumu"
+      hrzcm_ext_sys:
+        b_name_full: "Tam ad"
+        b_name_abbr: "Kısaltma"
+        b_comment: "Yorum"
+        b_url_doc: "Dokümantasyon URL"
+        b_key: "Metin anahtarı"
+        b_url_ci_details_ext: "Harici sistem CI detayları URL"
+        j_redmine_user_id: "Redmine kullanıcı kimliği"
+        j_location_default_id: "Varsayılan konum"
+
+  hrz_cmdb:
+    select_item: "Detayları görüntülemek için ağaçtan bir öğe seçin"
+    select_type: "Tip seçin"
+    select_ci_class: "CI sınıfı seçin"
+    select_location: "Konum seçin"
+    select_status: "Yaşam döngüsü durumu seçin"
+
+    locations:
+      title: "Konumlar"
+      new: "Yeni konum oluştur"
+      created: "Konum başarıyla oluşturuldu"
+      updated: "Konum başarıyla güncellendi"
+      deleted: "Konum başarıyla silindi"
+
+    location_hierarchy:
+      title: "Konum hiyerarşisi"
+      new: "Yeni hiyerarşi seviyesi oluştur"
+      created: "Hiyerarşi seviyesi başarıyla oluşturuldu"
+      updated: "Hiyerarşi seviyesi başarıyla güncellendi"
+      deleted: "Hiyerarşi seviyesi başarıyla silindi"
+      has_locations: "Silinemez: hiyerarşi seviyesinin ilişkili konumları var"
+
+    ci_classes:
+      title: "CI sınıfları"
+      new: "Yeni CI sınıfı oluştur"
+      created: "CI sınıfı başarıyla oluşturuldu"
+      updated: "CI sınıfı başarıyla güncellendi"
+      deleted: "CI sınıfı başarıyla silindi"
+      has_subclasses: "Silinemez: CI sınıfının alt sınıfları var"
+      has_cis: "Silinemez: CI sınıfı yapılandırma öğeleri tarafından kullanılıyor"
+      cannot_delete_in_use: "Silinemez: CI sınıfı hala kullanımda"
+
+    cis:
+      title: "Yapılandırma Öğeleri"
+      new: "Yeni CI oluştur"
+      created: "CI başarıyla oluşturuldu"
+      updated: "CI başarıyla güncellendi"
+      deleted: "CI başarıyla silindi"
+
+    cis_by_class:
+      title: "Sınıfa göre CI'lar"
+
+    lifecycle_statuses:
+      title: "Yaşam döngüsü durumları"
+      new: "Yeni yaşam döngüsü durumu oluştur"
+      created: "Yaşam döngüsü durumu başarıyla oluşturuldu"
+      updated: "Yaşam döngüsü durumu başarıyla güncellendi"
+      deleted: "Yaşam döngüsü durumu başarıyla silindi"
+
+    external_systems:
+      title: "Harici sistemler"
+      new: "Yeni harici sistem oluştur"
+      created: "Harici sistem başarıyla oluşturuldu"
+      updated: "Harici sistem başarıyla güncellendi"
+      deleted: "Harici sistem başarıyla silindi"
+
+    basic_data:
+      title: "Temel Veriler"
+
+    fields:
+      bezeichnung: "Ad"
+      kurzbezeichnung: "Kısa ad"
+      bemerkungen: "Notlar"
+      dokumentation: "Dokümantasyon"
+      b_name_full: "Tam ad"
+      b_name_abbr: "Kısaltma"
+      b_comment: "Yorum"
+      b_url_doc: "Dokümantasyon URL"
+      b_key: "Metin anahtarı"
+      j_level: "Hiyerarşi seviyesi"
+      j_sort: "Sıralama düzeni"
+      j_subclass_of: "Alt sınıfı"
+      type: "Tip"
+      part_of1: "Şunun parçası"
+      part_of2: "Ayrıca şunun parçası"
+      j_ci_class: "CI sınıfı"
+      j_location: "Konum"
+      b_producer: "Üretici, Tedarikçi"
+      b_model: "Model"
+      b_tag_serial: "Etiket, Seri Numarası, Envanter Numarası"
+      j_status: "Yaşam döngüsü durumu"
+      b_url_ci_details_ext: "Harici sistem CI detayları URL"
+      j_redmine_user_id: "Redmine kullanıcı kimliği"
+      j_location_default_id: "Varsayılan konum"
+
+    hints:
+      dokumentation: "Herhangi bir URL. TikiWiki makaleleri için sadece tiki: öneki ve sayfa adı."
+      b_key_hierarchy: "Benzersiz metin anahtarı"
+      b_key_location: "Örn. ülkeler için ISO 3166-1 kodu."
+      b_key_ci_class: "Benzersiz metin anahtarı"
+      b_key_lifecycle_status: "Benzersiz metin anahtarı"
+      j_level: "Sıralama düzenini belirler örn. 10=Dünya Gezegeni / 20=Kıta onarlı adımlarla 5000'e kadar: Dolap"
+      j_sort: "Herhangi bir sayı. Kayıtlar bu sayıya göre artan sırada sıralanır. Eşit sayılar için kısa ada göre."
+      b_url_doc: "Herhangi bir URL. TikiWiki makaleleri için, sadece tiki: öneki ve ardından sayfa adı."
+      b_url_ci_details_ext: "Bu harici sistemde CI detaylarını görüntülemek için URL. \"${key_ext}\" metni harici sistem anahtarı ile değiştirilecektir. Örnek: \"https://ext_cmdb.local/disp?key=${key_ext}\""
+      j_redmine_user_id: "Harici sistemin veri senkronizasyonu için kimlik doğrulama amacıyla kullandığı Redmine kullanıcısı."
+      j_location_default_id: "Bir harici sistem yalnızca belirli bir konumdan CI içeriyorsa veya konum bilgisi sağlamıyorsa, burada belirtilen konum bu harici sistem tarafından bildirilen tüm CI için kullanılacaktır."
+      select_user: "Kullanıcı seç"
+
+    status_info:
+      title: "Durum bilgisi"
+      record_id: "Kayıt kimliği"
+      created_by: "Oluşturan"
+      updated_by: "son güncelleyen"
+      at: "tarihinde"
+      new_record: "Yeni kayıt (henüz kaydedilmedi)"
+
+    buttons:
+      save: "Değişiklikleri kaydet"
+      save_continue: "Değişiklikleri kaydet, devam et"
+      cancel: "İptal"
+      create: "Yeni giriş oluştur"
+      save_as_copy: "Kopya olarak kaydet"
+      delete: "Sil"
+      open_url: "URL'yi aç"
+      back: "Geri"
+
+    confirm:
+      delete_location: "Bu konumu silmek istediğinizden emin misiniz?"
+      delete_ci_class: "Bu CI sınıfını silmek istediğinizden emin misiniz?"
+      delete_ci: "Bu CI'yi silmek istediğinizden emin misiniz?"
+      delete_lifecycle_status: "Bu yaşam döngüsü durumunu silmek istediğinizden emin misiniz?"
+      delete_ext_sys: "Bu harici sistemi silmek istediğinizden emin misiniz?"
+      delete_hierarchy: "Bu hiyerarşi seviyesini silmek istediğinizden emin misiniz?"
+
+    errors:
+      b_key_not_unique_for_type: "tip içinde benzersiz olmalıdır"
+      access_denied: "Erişim reddedildi"
+
+
+    settings:
+      tiki_url_title: "TikiWiki temel URL"
+      tiki_url_hint: "TikiWiki bağlantıları için temel URL (ör. https://tikiwiki.local/x?page=)"
+
+    permissions:
+      title: "HRZ CMDB İzinleri"
+      view_cmdb: "CMDB'yi görüntüle"
+      edit_cmdb: "CMDB'yi düzenle"
+      edit_basic_data: "Temel verileri düzenle"
+      admin_note: "Not: Yöneticiler otomatik olarak tüm izinlere sahiptir."
+      view_cmdb_hint: "CMDB verilerini görüntüleyebilecek grupları seçin"
+      edit_cmdb_hint: "CMDB konumlarını düzenleyebilecek grupları seçin"
+      edit_basic_data_hint: "Temel verileri (hiyerarşi seviyeleri) düzenleyebilecek grupları seçin"
+
+    settings:
+      title: "Ayarlar"
+
+    seed_data:
+      title: "Başlangıç verisi yönetimi"
+      menu_title: "Başlangıç verileri"
+      add_title: "Başlangıç verisi ekleme"
+      add_description: "Önceden tanımlanmış temel verileri ekler (konum hiyerarşisi seviyeleri, CI sınıfları, yaşam döngüsü durumları). Mevcut kayıtlar (b_key ile tanımlanan) atlanacaktır."
+      add_button: "Başlangıç verileri ekle"
+      add_confirm: "Başlangıç verileri eklemek istediğinizden emin misiniz? Mevcut kayıtlar korunacaktır."
+      remove_title: "Kullanılmayan başlangıç verilerini kaldırma"
+      remove_description: "Yabancı anahtarlar tarafından referans edilmeyen başlangıç verisi kayıtlarını kaldırır. Referans edilen kayıtlar korunacaktır."
+      remove_button: "Kullanılmayan başlangıç verilerini kaldır"
+      remove_confirm: "Kullanılmayan başlangıç verilerini kaldırmak istediğinizden emin misiniz? Yalnızca referans edilmeyen kayıtlar silinecektir."
+      add_result_title: "Başlangıç verisi ekleme sonuçları"
+      remove_result_title: "Başlangıç verisi kaldırma sonuçları"
+      model: "Model"
+      inserted: "Eklendi"
+      skipped: "Atlandı (zaten var)"
+      deleted: "Silindi"
+      kept: "Tutuldu (kullanımda)"
+      errors_count: "Hatalar"
+      errors_title: "Hatalar"
+      models:
+        hrzcm_locat_hier: "Konum hiyerarşisi seviyeleri"
+        hrzcm_ci_class: "CI sınıfları"
+        hrzcm_lifecycle_status: "Yaşam döngüsü durumları"
+
+    info:
+      title: "Eklenti bilgileri"
+      menu_title: "Bilgi"
+      plugin_info: "Eklenti bilgileri"
+      plugin_name: "İsim"
+      version: "Sürüm"
+      url: "URL"
+      statistics: "İstatistikler"
+      entity: "Varlık"
+      count: "Sayı"
+      entities:
+        ci_classes: "CI sınıfları"
+        cis: "Yapılandırma öğeleri"
+        lifecycle_statuses: "Yaşam döngüsü durumları"
+        location_hierarchies: "Konum hiyerarşisi seviyeleri"
+        locations: "Konumlar"
+
+  # Issue CI Integration
+  label_configuration_items: "Yapılandırma Öğeleri"
+  label_add_ci: "CI Ekle"
+  label_select_ci: "CI Seç"
+  label_no_cis_linked: "Bağlı yapılandırma öğesi yok"
+  label_ci_class: "CI Sınıfı"
+  label_location: "Konum"
+  label_lifecycle_status: "Yaşam Döngüsü Durumu"
+  label_loading: "Yükleniyor"
+  notice_ci_added: "CI başarıyla eklendi"
+  notice_ci_removed: "CI başarıyla kaldırıldı"
+  error_ci_not_found: "CI bulunamadı"
+  label_configuration_item: "Yapılandırma öğesi"
+  label_ci_added: "eklendi: %{new_value}"
+  label_ci_deleted: "silindi: %{old_value}"
+
+  # Project module permissions
+  project_module:
+    cmdb: "CMDB"
+  permission_view_issue_cis: "Sorunlarda CI'ları görüntüle"
+  permission_manage_issue_cis: "Sorunlarda CI'ları yönet"

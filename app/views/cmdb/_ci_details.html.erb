@@ -1,0 +1,157 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Detail view partial displaying CI information including class, location, status, and hardware specs.
+            Shows configuration item attributes in a read-only format with edit/delete buttons. %>
+
+<div class="ci-details">
+  <h3><%= ci.display_name %></h3>
+
+  <% if can_edit %>
+    <%= form_tag "/cmdb/cis/#{ci.id}", method: :put, id: 'ci-form', class: 'ci-form' do %>
+      <div class="form-group">
+        <%= label_tag :b_name_full, l('hrz_cmdb.fields.b_name_full') %>
+        <div class="field-wrapper">
+          <%= text_field_tag 'ci[b_name_full]', ci.b_name_full, class: 'form-control', maxlength: 120 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_name_abbr, l('hrz_cmdb.fields.b_name_abbr') %>
+        <div class="field-wrapper">
+          <%= text_field_tag 'ci[b_name_abbr]', ci.b_name_abbr, class: 'form-control form-control-short', maxlength: 50 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :j_ci_class_id, l('hrz_cmdb.fields.j_ci_class') %> <span class="required">*</span>
+        <div class="field-wrapper">
+          <%= select_tag 'ci[j_ci_class_id]',
+                         options_for_select(
+                           [[l('hrz_cmdb.select_ci_class'), '']] +
+                           HrzcmCiClass.ordered_by_sort_and_abbr.map { |c| ["#{c.b_name_abbr} - #{c.b_name_full}", c.id] },
+                           ci.j_ci_class_id
+                         ),
+                         class: 'form-control',
+                         id: 'ci_j_ci_class_id',
+                         required: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :j_location_id, l('hrz_cmdb.fields.j_location') %>
+        <div class="field-wrapper">
+          <%= select_tag 'ci[j_location_id]',
+                         options_for_select(
+                           [[l('hrz_cmdb.select_location'), '']] +
+                           HrzcmLocation.ordered_by_b_name_abbr.map { |loc| ["#{loc.b_name_abbr} - #{loc.b_name_full}", loc.id] },
+                           ci.j_location_id
+                         ),
+                         class: 'form-control',
+                         id: 'ci_j_location_id' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_producer, l('hrz_cmdb.fields.b_producer') %>
+        <div class="field-wrapper">
+          <%= text_field_tag 'ci[b_producer]', ci.b_producer, class: 'form-control', maxlength: 100 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_model, l('hrz_cmdb.fields.b_model') %>
+        <div class="field-wrapper">
+          <%= text_field_tag 'ci[b_model]', ci.b_model, class: 'form-control', maxlength: 100 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_tag_serial, l('hrz_cmdb.fields.b_tag_serial') %>
+        <div class="field-wrapper">
+          <%= text_field_tag 'ci[b_tag_serial]', ci.b_tag_serial, class: 'form-control', maxlength: 40 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :j_status_id, l('hrz_cmdb.fields.j_status') %>
+        <div class="field-wrapper">
+          <%= select_tag 'ci[j_status_id]',
+                         options_for_select(
+                           [[l('hrz_cmdb.select_status'), '']] +
+                           HrzcmLifecycleStatus.ordered_by_abbr.map { |s| ["#{s.b_name_abbr} - #{s.b_name_full}", s.id] },
+                           ci.j_status_id
+                         ),
+                         class: 'form-control',
+                         id: 'ci_j_status_id' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_comment, l('hrz_cmdb.fields.b_comment') %>
+        <div class="field-wrapper">
+          <%= text_area_tag 'ci[b_comment]', ci.b_comment, class: 'form-control', rows: 5, maxlength: 10000 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :b_url_doc, l('hrz_cmdb.fields.b_url_doc') %>
+        <div class="field-wrapper">
+          <div class="url-field-container">
+            <%= text_field_tag 'ci[b_url_doc]', ci.b_url_doc, class: 'form-control url-field', maxlength: 1500 %>
+            <span class="url-open-icon <%= ci.b_url_doc.blank? ? 'disabled' : '' %>"
+                  data-url="<%= ci.b_url_doc %>"
+                  title="<%= l('hrz_cmdb.buttons.open_url', default: 'Open URL') %>"></span>
+          </div>
+          <span class="hint"><%= l('hrz_cmdb.hints.b_url_doc') %></span>
+        </div>
+      </div>
+
+      <fieldset class="status-info">
+        <legend><%= l('hrz_cmdb.status_info.title') %></legend>
+        <div class="status-info-content">
+          <% if ci.persisted? %>
+            <%= l('hrz_cmdb.status_info.record_id') %>: <%= ci.id %>
+            <% if ci.creator.present? %>
+              <%= l('hrz_cmdb.status_info.created_by') %>
+              <span class="user-link" title="<%= "#{ci.creator.firstname} #{ci.creator.lastname}" %>"><%= ci.creator.login %></span>
+              <%= l('hrz_cmdb.status_info.at') %> <%= format_time(ci.created_on) %><%= ci.updater.present? ? ',' : '.' %>
+            <% end %>
+            <% if ci.updater.present? %>
+              <%= l('hrz_cmdb.status_info.updated_by') %>
+              <span class="user-link" title="<%= "#{ci.updater.firstname} #{ci.updater.lastname}" %>"><%= ci.updater.login %></span>
+              <%= l('hrz_cmdb.status_info.at') %> <%= format_time(ci.updated_on) %>.
+            <% end %>
+          <% else %>
+            <%= l('hrz_cmdb.status_info.new_record') %>
+          <% end %>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <%= submit_tag l('hrz_cmdb.buttons.save'), class: 'button button-positive' %>
+        <%= submit_tag l('hrz_cmdb.buttons.save_continue'), class: 'button', name: 'continue' %>
+        <% if ci.persisted? %>
+          <%= submit_tag l('hrz_cmdb.buttons.save_as_copy'), class: 'button', name: 'save_as_copy' %>
+        <% end %>
+        <% if ci.persisted? %>
+          <%= link_to l('hrz_cmdb.buttons.delete'), "#", class: 'button button-negative',
+                      onclick: "if (confirm('#{l('hrz_cmdb.confirm.delete_ci')}')) { HrzCmdb.deleteNode('ci', #{ci.id}); } return false;" %>
+        <% end %>
+        <%= link_to l('hrz_cmdb.buttons.cancel'), '#', class: 'button', onclick: 'HrzCmdb.clearDetails(); return false;' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

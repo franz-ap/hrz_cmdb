@@ -1,0 +1,281 @@
+#-------------------------------------------------------------------------------------------#
+# Redmine CMDB plugin: Configuration Management DataBase                                    #
+# Copyright (C) 2025 Franz Apeltauer                                                        #
+#                                                                                           #
+# This program is free software: you can redistribute it and/or modify it under the terms   #
+# of the GNU Affero General Public License as published by the Free Software Foundation,    #
+# either version 3 of the License, or (at your option) any later version.                   #
+#                                                                                           #
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; #
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #
+# See the GNU Affero General Public License for more details.                               #
+#                                                                                           #
+# You should have received a copy of the GNU Affero General Public License                  #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.                    #
+#-------------------------------------------------------------------------------------eohdr-#
+hu:
+  label_cmdb: "CMDB"
+
+  activerecord:
+    attributes:
+      hrzcm_location:
+        b_name_full: "Megnevezés"
+        b_name_abbr: "Rövid név"
+        b_comment: "Megjegyzések"
+        b_url_doc: "Dokumentáció"
+        b_key: "Szöveges kulcs"
+        j_type_id: "Típus"
+        j_part_of1_id: "Része ennek"
+        j_part_of2_id: "Szintén része ennek"
+      hrzcm_locat_hier:
+        b_name_full: "Megnevezés"
+        b_name_abbr: "Rövid név"
+        b_comment: "Megjegyzések"
+        b_url_doc: "Dokumentáció"
+        b_key: "Szöveges kulcs"
+        j_level: "Hierarchia szint"
+      hrzcm_ci_class:
+        b_name_full: "Megnevezés"
+        b_name_abbr: "Rövid név"
+        b_comment: "Megjegyzések"
+        b_url_doc: "Dokumentáció"
+        b_key: "Szöveges kulcs"
+        j_sort: "Rendezési sorrend"
+        j_subclass_of_id: "Alosztálya"
+      hrzcm_lifecycle_status:
+        b_name_full: "Teljes név"
+        b_name_abbr: "Rövidítés"
+        b_comment: "Megjegyzés"
+        b_url_doc: "Dokumentáció URL"
+        b_key: "Szöveges kulcs"
+      hrzcm_ci:
+        b_name_full: "Teljes név"
+        b_name_abbr: "Rövidítés"
+        b_comment: "Megjegyzés"
+        b_url_doc: "Dokumentáció URL"
+        j_ci_class_id: "CI osztály"
+        j_location_id: "Helyszín"
+        b_producer: "Gyártó, Beszállító"
+        b_model: "Modell"
+        b_tag_serial: "Címke, Sorozatszám, Leltári szám"
+        j_status_id: "Életciklus állapot"
+      hrzcm_ext_sys:
+        b_name_full: "Teljes név"
+        b_name_abbr: "Rövidítés"
+        b_comment: "Megjegyzés"
+        b_url_doc: "Dokumentáció URL"
+        b_key: "Szöveges kulcs"
+        b_url_ci_details_ext: "Külső rendszer URL a CI részletekhez"
+        j_redmine_user_id: "Redmine felhasználó azonosító"
+        j_location_default_id: "Alapértelmezett helyszín"
+
+  hrz_cmdb:
+    select_item: "Válasszon egy elemet a fából a részletek megtekintéséhez"
+    select_type: "Típus kiválasztása"
+    select_ci_class: "CI osztály kiválasztása"
+    select_location: "Helyszín kiválasztása"
+    select_status: "Életciklus állapot kiválasztása"
+
+    locations:
+      title: "Helyszínek"
+      new: "Új helyszín létrehozása"
+      created: "Helyszín sikeresen létrehozva"
+      updated: "Helyszín sikeresen frissítve"
+      deleted: "Helyszín sikeresen törölve"
+
+    location_hierarchy:
+      title: "Helyszín hierarchia"
+      new: "Új hierarchia szint létrehozása"
+      created: "Hierarchia szint sikeresen létrehozva"
+      updated: "Hierarchia szint sikeresen frissítve"
+      deleted: "Hierarchia szint sikeresen törölve"
+      has_locations: "Nem törölhető: a hierarchia szinthez helyszínek tartoznak"
+
+    ci_classes:
+      title: "CI osztályok"
+      new: "Új CI osztály létrehozása"
+      created: "CI osztály sikeresen létrehozva"
+      updated: "CI osztály sikeresen frissítve"
+      deleted: "CI osztály sikeresen törölve"
+      has_subclasses: "Nem törölhető: a CI osztálynak vannak alosztályai"
+      has_cis: "Nem törölhető: a CI osztályt konfigurációs elemek használják"
+      cannot_delete_in_use: "Nem törölhető: a CI osztály még használatban van"
+
+    cis:
+      title: "Konfigurációs elemek"
+      new: "Új CI létrehozása"
+      created: "CI sikeresen létrehozva"
+      updated: "CI sikeresen frissítve"
+      deleted: "CI sikeresen törölve"
+
+    cis_by_class:
+      title: "CI-k osztály szerint"
+
+    lifecycle_statuses:
+      title: "Életciklus állapotok"
+      new: "Új életciklus állapot létrehozása"
+      created: "Életciklus állapot sikeresen létrehozva"
+      updated: "Életciklus állapot sikeresen frissítve"
+      deleted: "Életciklus állapot sikeresen törölve"
+
+    external_systems:
+      title: "Külső rendszerek"
+      new: "Új külső rendszer létrehozása"
+      created: "Külső rendszer sikeresen létrehozva"
+      updated: "Külső rendszer sikeresen frissítve"
+      deleted: "Külső rendszer sikeresen törölve"
+
+    basic_data:
+      title: "Alapadatok"
+
+    fields:
+      bezeichnung: "Megnevezés"
+      kurzbezeichnung: "Rövid név"
+      bemerkungen: "Megjegyzések"
+      dokumentation: "Dokumentáció"
+      b_name_full: "Teljes név"
+      b_name_abbr: "Rövidítés"
+      b_comment: "Megjegyzés"
+      b_url_doc: "Dokumentáció URL"
+      b_key: "Szöveges kulcs"
+      j_level: "Hierarchia szint"
+      j_sort: "Rendezési sorrend"
+      j_subclass_of: "Alosztálya"
+      type: "Típus"
+      part_of1: "Része ennek"
+      part_of2: "Szintén része ennek"
+      j_ci_class: "CI osztály"
+      j_location: "Helyszín"
+      b_producer: "Gyártó, Beszállító"
+      b_model: "Modell"
+      b_tag_serial: "Címke, Sorozatszám, Leltári szám"
+      j_status: "Életciklus állapot"
+      b_url_ci_details_ext: "Külső rendszer URL a CI részletekhez"
+      j_redmine_user_id: "Redmine felhasználó azonosító"
+      j_location_default_id: "Alapértelmezett helyszín"
+
+    hints:
+      dokumentation: "Bármilyen URL. TikiWiki cikkekhez csak a tiki: előtag a lap nevével."
+      b_key_hierarchy: "Egyedi szöveges kulcs"
+      b_key_location: "Pl. országoknál az ISO 3166-1 kód."
+      b_key_ci_class: "Egyedi szöveges kulcs"
+      b_key_lifecycle_status: "Egyedi szöveges kulcs"
+      j_level: "Meghatározza a rendezési sorrendet pl. 10=Föld bolygó / 20=Kontinens tízes lépésekben 5000-ig: Szekrény"
+      j_sort: "Bármilyen szám. A rekordok ezen szám szerint növekvő sorrendben kerülnek rendezésre. Azonos számok esetén a rövid név szerint."
+      b_url_doc: "Bármilyen URL. TikiWiki cikkekhez csak a tiki: előtag, amelyet az oldal neve követ."
+      b_url_ci_details_ext: "URL a CI részleteinek megjelenítéséhez ebben a külső rendszerben. A \"${key_ext}\" szöveg helyettesítve lesz a külső rendszer kulcsával. Példa: \"https://ext_cmdb.local/disp?key=${key_ext}\""
+      j_redmine_user_id: "Redmine felhasználó, amelyet a külső rendszer használ hitelesítéshez az adatszinkronizáláshoz."
+      j_location_default_id: "Ha egy külső rendszer csak egy adott helyszínről származó CI-kat tartalmaz, vagy nem szolgáltat helyszín információkat, az itt megadott helyszín lesz használva minden CI-hez, amelyet ez a külső rendszer jelent."
+      select_user: "Felhasználó kiválasztása"
+
+    status_info:
+      title: "Állapotinformáció"
+      record_id: "Rekord azonosító"
+      created_by: "Létrehozta"
+      updated_by: "utoljára frissítette"
+      at: "időpontban"
+      new_record: "Új rekord (még nincs mentve)"
+
+    buttons:
+      save: "Változások mentése"
+      save_continue: "Változások mentése, folytatás"
+      cancel: "Mégse"
+      create: "Új bejegyzés létrehozása"
+      save_as_copy: "Mentés másolatként"
+      delete: "Törlés"
+      open_url: "URL megnyitása"
+      back: "Vissza"
+
+    confirm:
+      delete_location: "Biztosan törölni szeretné ezt a helyet?"
+      delete_ci_class: "Biztosan törölni szeretné ezt a CI osztályt?"
+      delete_ci: "Biztosan törölni szeretné ezt a CI-t?"
+      delete_lifecycle_status: "Biztosan törölni szeretné ezt az életciklus állapotot?"
+      delete_ext_sys: "Biztosan törölni szeretné ezt a külső rendszert?"
+      delete_hierarchy: "Biztosan törölni szeretné ezt a hierarchia szintet?"
+
+    errors:
+      b_key_not_unique_for_type: "egyedinek kell lennie a típuson belül"
+      access_denied: "Hozzáférés megtagadva"
+
+
+    settings:
+      tiki_url_title: "TikiWiki alap URL"
+      tiki_url_hint: "TikiWiki linkek alap URL-je (pl. https://tikiwiki.local/x?page=)"
+    permissions:
+      title: "HRZ CMDB Jogosultságok"
+      view_cmdb: "CMDB megtekintése"
+      edit_cmdb: "CMDB szerkesztése"
+      edit_basic_data: "Alapadatok szerkesztése"
+      admin_note: "Megjegyzés: A rendszergazdák automatikusan minden jogosultsággal rendelkeznek."
+      view_cmdb_hint: "Válassza ki azokat a csoportokat, amelyek megtekinthetik a CMDB adatokat"
+      edit_cmdb_hint: "Válassza ki azokat a csoportokat, amelyek szerkeszthetik a CMDB helyszíneket"
+      edit_basic_data_hint: "Válassza ki azokat a csoportokat, amelyek szerkeszthetik az alapadatokat (hierarchia szintek)"
+
+    settings:
+      title: "Beállítások"
+
+    seed_data:
+      title: "Kezdeti adatok kezelése"
+      menu_title: "Kezdeti adatok"
+      add_title: "Kezdeti adatok hozzáadása"
+      add_description: "Előre definiált alapadatokat ad hozzá (helyszín hierarchia szintek, CI osztályok, életciklus állapotok). A meglévő rekordok (b_key alapján azonosítva) átlépődnek."
+      add_button: "Kezdeti adatok hozzáadása"
+      add_confirm: "Biztosan hozzá szeretné adni a kezdeti adatokat? A meglévő rekordok megmaradnak."
+      remove_title: "Nem használt kezdeti adatok eltávolítása"
+      remove_description: "Eltávolítja azokat a kezdeti adat rekordokat, amelyekre nem hivatkoznak idegen kulcsok. A hivatkozott rekordok megmaradnak."
+      remove_button: "Nem használt kezdeti adatok eltávolítása"
+      remove_confirm: "Biztosan el szeretné távolítani a nem használt kezdeti adatokat? Csak a nem hivatkozott rekordok lesznek törölve."
+      add_result_title: "Kezdeti adatok hozzáadásának eredményei"
+      remove_result_title: "Kezdeti adatok eltávolításának eredményei"
+      model: "Modell"
+      inserted: "Beszúrva"
+      skipped: "Kihagyva (már létezik)"
+      deleted: "Törölve"
+      kept: "Megtartva (használatban)"
+      errors_count: "Hibák"
+      errors_title: "Hibák"
+      models:
+        hrzcm_locat_hier: "Helyszín hierarchia szintek"
+        hrzcm_ci_class: "CI osztályok"
+        hrzcm_lifecycle_status: "Életciklus állapotok"
+
+    info:
+      title: "Bővítmény információk"
+      menu_title: "Info"
+      plugin_info: "Bővítmény információk"
+      plugin_name: "Név"
+      version: "Verzió"
+      url: "URL"
+      statistics: "Statisztika"
+      entity: "Entitás"
+      count: "Darabszám"
+      entities:
+        ci_classes: "CI osztályok"
+        cis: "Konfigurációs elemek"
+        lifecycle_statuses: "Életciklus állapotok"
+        location_hierarchies: "Helyszín hierarchia szintek"
+        locations: "Helyszínek"
+
+  # Issue CI Integration
+  label_configuration_items: "Konfigurációs elemek"
+  label_configuration_items: "Konfigurációs elemek"
+  label_add_ci: "CI hozzáadása"
+  label_select_ci: "CI kiválasztása"
+  label_no_cis_linked: "Nincsenek kapcsolt konfigurációs elemek"
+  label_ci_class: "CI osztály"
+  label_location: "Helyszín"
+  label_lifecycle_status: "Életciklus állapot"
+  label_loading: "Betöltés"
+  notice_ci_added: "CI sikeresen hozzáadva"
+  notice_ci_removed: "CI sikeresen eltávolítva"
+  error_ci_not_found: "CI nem található"
+  label_configuration_item: "Konfigurációs elem"
+  label_ci_added: "hozzáadva: %{new_value}"
+  label_ci_deleted: "törölve: %{old_value}"
+
+  # Project module permissions
+  project_module:
+    cmdb: "CMDB"
+  permission_view_issue_cis: "CI-k megtekintése a problémákban"
+  permission_manage_issue_cis: "CI-k kezelése a problémákban"

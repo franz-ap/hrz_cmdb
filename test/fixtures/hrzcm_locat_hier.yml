@@ -1,0 +1,36 @@
+# Location hierarchy levels
+building:
+  id: 1
+  b_name_full: Building
+  b_name_abbr: BLD
+  b_key: building
+  j_level: 1
+  b_comment: Top level location type
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+floor:
+  id: 2
+  b_name_full: Floor
+  b_name_abbr: FLR
+  b_key: floor
+  j_level: 2
+  b_comment: Building floor level
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+room:
+  id: 3
+  b_name_full: Room
+  b_name_abbr: RM
+  b_key: room
+  j_level: 3
+  b_comment: Individual room
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00

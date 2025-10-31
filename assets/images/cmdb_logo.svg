@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1000 1000"
+   width="1000"
+   height="1000"
+   version="1.1"
+   id="svg78"
+   sodipodi:docname="cmdb_logo.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:export-filename="cmdb_logo_100x100.png"
+   inkscape:export-xdpi="9.6000004"
+   inkscape:export-ydpi="9.6000004"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title303">CMDB Logo AF</title>
+  <defs
+     id="defs82" />
+  <sodipodi:namedview
+     id="namedview80"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.843"
+     inkscape:cx="491.1032"
+     inkscape:cy="381.37604"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg78" />
+  <!-- Hellgrauer Hintergrund -->
+  <rect
+     width="1000"
+     height="1000"
+     fill="#d3d3d3"
+     id="rect2" />
+  <!-- Datenbank-Symbol (3 gestapelte Zylinder) - Ansicht von oben -->
+  <g
+     id="database"
+     transform="matrix(0.97434843,0,0,1.0356821,14.193248,7.7850494)">
+    <!-- Unterer Bereich: Seitenwand und untere Kurve als gemeinsamer Pfad -->
+    <path
+       d="m 10,700 v 150 a 490,80 0 0 0 980,0 V 700"
+       fill="#4caf50"
+       stroke="#2e7d32"
+       stroke-width="3"
+       id="path4" />
+    <!-- Mittlerer Bereich: Seitenwand -->
+    <rect
+       x="10"
+       y="400"
+       width="980"
+       height="300"
+       fill="#4caf50"
+       id="rect6" />
+    <line
+       x1="10"
+       y1="400"
+       x2="10"
+       y2="700"
+       stroke="#2e7d32"
+       stroke-width="3"
+       id="line8" />
+    <line
+       x1="990"
+       y1="400"
+       x2="990"
+       y2="700"
+       stroke="#2e7d32"
+       stroke-width="3"
+       id="line10" />
+    <!-- Oberer Bereich: Seitenwand -->
+    <rect
+       x="10"
+       y="100"
+       width="980"
+       height="300"
+       fill="#4caf50"
+       id="rect12" />
+    <line
+       x1="10"
+       y1="100"
+       x2="10"
+       y2="400"
+       stroke="#2e7d32"
+       stroke-width="3"
+       id="line14" />
+    <line
+       x1="990"
+       y1="100"
+       x2="990"
+       y2="400"
+       stroke="#2e7d32"
+       stroke-width="3"
+       id="line16" />
+    <!-- Obere Ellipse des unteren Zylinders -->
+    <ellipse
+       cx="500"
+       cy="700"
+       rx="490"
+       ry="80"
+       fill="#66bb6a"
+       stroke="#2e7d32"
+       stroke-width="3"
+       id="ellipse18" />
+    <!-- Obere Ellipse des mittleren Zylinders -->
+    <ellipse
+       cx="500"
+       cy="400"
+       rx="490"
+       ry="80"
+       fill="#66bb6a"
+       stroke="#2e7d32"
+       stroke-width="3"
+       id="ellipse20" />
+    <!-- Obere Ellipse des obersten Zylinders -->
+    <ellipse
+       cx="500"
+       cy="100"
+       rx="490"
+       ry="80"
+       fill="#66bb6a"
+       stroke="#2e7d32"
+       stroke-width="3"
+       id="ellipse22" />
+  </g>
+  <!-- Weißes Blatt Papier: Ticket -->
+  <g
+     id="paper"
+     transform="translate(-3.2402934,-86.298027)">
+    <rect
+       x="400"
+       y="300"
+       width="200"
+       height="250"
+       fill="#ffffff"
+       stroke="#000000"
+       stroke-width="2"
+       id="rect25" />
+    <!-- Geknickte Ecke -->
+    <path
+       d="m 560,300 v 40 h 40 z"
+       fill="#e0e0e0"
+       stroke="#000000"
+       stroke-width="2"
+       id="path27" />
+    <path
+       d="m 560,300 40,40"
+       stroke="#000000"
+       stroke-width="2"
+       fill="none"
+       id="path29" />
+    <!-- Text "#1234" -->
+    <text
+       x="420"
+       y="340"
+       font-family="Arial, sans-serif"
+       font-size="34px"
+       font-weight="bold"
+       fill="#000000"
+       id="text31">#1234</text>
+    <!-- Text "CIs" -->
+    <text
+       x="420"
+       y="440"
+       font-family="Arial, sans-serif"
+       font-size="34px"
+       font-weight="bold"
+       fill="#000000"
+       id="text32">CIs</text>
+  </g>
+  <!-- Server-Symbol -->
+  <g
+     id="server"
+     transform="matrix(1.1271971,0,0,1.680359,-59.214953,-488.19797)">
+    <rect
+       x="200"
+       y="600"
+       width="120"
+       height="150"
+       fill="#607d8b"
+       stroke="#37474f"
+       stroke-width="2"
+       rx="5"
+       id="rect34" />
+    <!-- Server-Schichten -->
+    <rect
+       x="210"
+       y="610"
+       width="100"
+       height="35"
+       fill="#78909c"
+       stroke="#37474f"
+       stroke-width="1"
+       rx="3"
+       id="rect36" />
+    <rect
+       x="210"
+       y="655"
+       width="100"
+       height="35"
+       fill="#78909c"
+       stroke="#37474f"
+       stroke-width="1"
+       rx="3"
+       id="rect38" />
+    <rect
+       x="210"
+       y="700"
+       width="100"
+       height="35"
+       fill="#78909c"
+       stroke="#37474f"
+       stroke-width="1"
+       rx="3"
+       id="rect40" />
+    <!-- LED-Anzeigen -->
+    <circle
+       cx="225"
+       cy="627"
+       r="4"
+       fill="#4caf50"
+       id="circle42" />
+    <circle
+       cx="240"
+       cy="627"
+       r="4"
+       fill="#ffc107"
+       id="circle44" />
+    <circle
+       cx="225"
+       cy="672"
+       r="4"
+       fill="#4caf50"
+       id="circle46" />
+    <circle
+       cx="240"
+       cy="672"
+       r="4"
+       fill="#4caf50"
+       id="circle48" />
+    <circle
+       cx="225"
+       cy="717"
+       r="4"
+       fill="#ffc107"
+       id="circle50" />
+    <circle
+       cx="240"
+       cy="717"
+       r="4"
+       fill="#4caf50"
+       id="circle52" />
+  </g>
+  <!-- Router-Symbol -->
+  <g
+     id="router"
+     transform="matrix(1.7382898,0,0,1.6758811,-495.22599,-397.26206)">
+    <rect
+       x="680"
+       y="600"
+       width="120"
+       height="80"
+       fill="#455a64"
+       stroke="#263238"
+       stroke-width="2"
+       rx="5"
+       id="rect55" />
+    <!-- Antennen -->
+    <rect
+       x="700"
+       y="580"
+       width="8"
+       height="25"
+       fill="#37474f"
+       rx="2"
+       id="rect57" />
+    <rect
+       x="750"
+       y="580"
+       width="8"
+       height="25"
+       fill="#37474f"
+       rx="2"
+       id="rect59" />
+    <!-- Ports -->
+    <rect
+       x="690"
+       y="645"
+       width="15"
+       height="10"
+       fill="#263238"
+       stroke="#000000"
+       stroke-width="1"
+       id="rect61" />
+    <rect
+       x="710"
+       y="645"
+       width="15"
+       height="10"
+       fill="#263238"
+       stroke="#000000"
+       stroke-width="1"
+       id="rect63" />
+    <rect
+       x="730"
+       y="645"
+       width="15"
+       height="10"
+       fill="#263238"
+       stroke="#000000"
+       stroke-width="1"
+       id="rect65" />
+    <rect
+       x="750"
+       y="645"
+       width="15"
+       height="10"
+       fill="#263238"
+       stroke="#000000"
+       stroke-width="1"
+       id="rect67" />
+    <rect
+       x="770"
+       y="645"
+       width="15"
+       height="10"
+       fill="#263238"
+       stroke="#000000"
+       stroke-width="1"
+       id="rect69" />
+    <!-- LED -->
+    <circle
+       cx="735"
+       cy="620"
+       r="5"
+       fill="#4caf50"
+       id="circle71" />
+  </g>
+  <!-- Verbindungslinien zum Ticket -->
+  <line
+     x1="289.9776"
+     y1="582.68018"
+     x2="487.26974"
+     y2="345.12854"
+     stroke="#000000"
+     stroke-width="3"
+     id="line74" />
+  <line
+     x1="686.57184"
+     y1="650.90942"
+     x2="502.14523"
+     y2="346.25992"
+     stroke="#000000"
+     stroke-width="3"
+     id="line76" />
+  <metadata
+     id="metadata301">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/" />
+        <dc:title>CMDB Logo AF</dc:title>
+        <dc:date>24.10.2025</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Franz Apeltauer</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

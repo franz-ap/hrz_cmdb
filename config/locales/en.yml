@@ -1,0 +1,271 @@
+#-------------------------------------------------------------------------------------------#
+# Redmine CMDB plugin: Configuration Management DataBase                                    #
+# Copyright (C) 2025 Franz Apeltauer                                                        #
+#                                                                                           #
+# This program is free software: you can redistribute it and/or modify it under the terms   #
+# of the GNU Affero General Public License as published by the Free Software Foundation,    #
+# either version 3 of the License, or (at your option) any later version.                   #
+#                                                                                           #
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; #
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #
+# See the GNU Affero General Public License for more details.                               #
+#                                                                                           #
+# You should have received a copy of the GNU Affero General Public License                  #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.                    #
+#-------------------------------------------------------------------------------------eohdr-#
+en:
+  label_cmdb: "CMDB"
+
+  activerecord:
+    attributes:
+      hrzcm_location:
+        b_name_full: "Full name"
+        b_name_abbr: "Abbreviation"
+        b_comment: "Comment"
+        b_url_doc: "Documentation URL"
+        b_key: "Text key"
+        j_type_id: "Type"
+        j_part_of1_id: "Part of"
+        j_part_of2_id: "Also part of"
+      hrzcm_locat_hier:
+        b_name_full: "Full name"
+        b_name_abbr: "Abbreviation"
+        b_comment: "Comment"
+        b_url_doc: "Documentation URL"
+        b_key: "Text key"
+        j_level: "Hierarchy level"
+      hrzcm_ci_class:
+        b_name_full: "Full name"
+        b_name_abbr: "Abbreviation"
+        b_comment: "Comment"
+        b_url_doc: "Documentation URL"
+        b_key: "Text key"
+        j_sort: "Sort order"
+        j_subclass_of_id: "Subclass of"
+      hrzcm_lifecycle_status:
+        b_name_full: "Full name"
+        b_name_abbr: "Abbreviation"
+        b_comment: "Comment"
+        b_url_doc: "Documentation URL"
+        b_key: "Text key"
+      hrzcm_ci:
+        b_name_full: "Full name"
+        b_name_abbr: "Abbreviation"
+        b_comment: "Comment"
+        b_url_doc: "Documentation URL"
+        j_ci_class_id: "CI class"
+        j_location_id: "Location"
+        b_producer: "Producer, Supplier"
+        b_model: "Model"
+        b_tag_serial: "Tag, Serial Number, Inventory Number"
+        j_status_id: "Lifecycle status"
+
+  hrz_cmdb:
+    select_item: "Select an item from the tree to view details"
+    select_type: "Select type"
+    select_ci_class: "Select CI class"
+    select_location: "Select location"
+    select_status: "Select lifecycle status"
+
+    locations:
+      title: "Locations"
+      new: "Create new location"
+      created: "Location created successfully"
+      updated: "Location updated successfully"
+      deleted: "Location deleted successfully"
+
+    location_hierarchy:
+      title: "Location hierarchy"
+      new: "Create new hierarchy level"
+      created: "Hierarchy level created successfully"
+      updated: "Hierarchy level updated successfully"
+      deleted: "Hierarchy level deleted successfully"
+      has_locations: "Cannot delete: hierarchy level has associated locations"
+
+    ci_classes:
+      title: "CI Classes"
+      new: "Create new CI class"
+      created: "CI class created successfully"
+      updated: "CI class updated successfully"
+      deleted: "CI class deleted successfully"
+      has_subclasses: "Cannot delete: CI class has subclasses"
+      has_cis: "Cannot delete: CI class is used by configuration items"
+      cannot_delete_in_use: "Cannot delete: CI class is still in use"
+
+    cis:
+      title: "Configuration Items"
+      new: "Create new CI"
+      created: "CI created successfully"
+      updated: "CI updated successfully"
+      deleted: "CI deleted successfully"
+
+    cis_by_class:
+      title: "CIs by Class"
+
+    lifecycle_statuses:
+      title: "Lifecycle Statuses"
+      new: "Create new lifecycle status"
+      created: "Lifecycle status created successfully"
+      updated: "Lifecycle status updated successfully"
+      deleted: "Lifecycle status deleted successfully"
+
+    external_systems:
+      title: "External Systems"
+      new: "Create new external system"
+      created: "External system created successfully"
+      updated: "External system updated successfully"
+      deleted: "External system deleted successfully"
+
+    basic_data:
+      title: "Basic Data"
+
+    fields:
+      bezeichnung: "Name"
+      kurzbezeichnung: "Short name"
+      bemerkungen: "Remarks"
+      dokumentation: "Documentation"
+      b_name_full: "Full name"
+      b_name_abbr: "Abbreviation"
+      b_comment: "Comment"
+      b_url_doc: "Documentation URL"
+      b_key: "Text key"
+      j_level: "Hierarchy level"
+      j_sort: "Sort order"
+      j_subclass_of: "Subclass of"
+      type: "Type"
+      part_of1: "Part of"
+      part_of2: "Also part of"
+      j_ci_class: "CI class"
+      j_location: "Location"
+      b_producer: "Producer, Supplier"
+      b_model: "Model"
+      b_tag_serial: "Tag, Serial Number, Inventory Number"
+      j_status: "Lifecycle status"
+      b_url_ci_details_ext: "URL ext. System CI Details Display"
+      j_redmine_user_id: "Redmine User ID"
+      j_location_default_id: "Default Location"
+
+    hints:
+      dokumentation: "Any URL. For TikiWiki articles, just the prefix tiki: followed by the page name."
+      b_url_doc: "Any URL. For TikiWiki articles, just the prefix tiki: followed by the page name."
+      b_key_hierarchy: "Unique text key"
+      b_key_location: "E.g. for countries the ISO 3166-1 code."
+      b_key_ci_class: "Unique text key"
+      b_key_lifecycle_status: "Unique text key"
+      j_level: "Determines the sorting order e.g. from 10=Planet Earth / 20=Continent in increments of ten to 5000: Cabinet"
+      j_sort: "Any number. Records are sorted by this number in ascending order. For equal numbers by abbreviation."
+      b_url_ci_details_ext: "URL to display details of a CI in this external system. The text \"${key_ext}\" will be replaced with the external system key. Example: \"https://ext_cmdb.local/disp?key=${key_ext}\""
+      j_redmine_user_id: "Redmine user that the external system uses to authenticate for data synchronization."
+      j_location_default_id: "If an external system only contains CIs from a specific location or provides no location information, the location specified here will be used for all CIs reported by this external system."
+      select_user: "Select user"
+
+    status_info:
+      title: "Status Information"
+      record_id: "Record ID"
+      created_by: "Created by"
+      updated_by: "last updated by"
+      at: "at"
+      new_record: "New record (not yet saved)"
+
+    buttons:
+      save: "Save changes"
+      save_continue: "Save changes, continue"
+      save_as_copy: "Save as copy"
+      cancel: "Cancel"
+      create: "Create new entry"
+      delete: "Delete"
+      open_url: "Open URL"
+      back: "Back"
+
+    confirm:
+      delete_location: "Are you sure you want to delete this location?"
+      delete_ci_class: "Are you sure you want to delete this CI class?"
+      delete_ci: "Are you sure you want to delete this CI?"
+      delete_lifecycle_status: "Are you sure you want to delete this lifecycle status?"
+      delete_ext_sys: "Are you sure you want to delete this external system?"
+      delete_hierarchy: "Are you sure you want to delete this hierarchy level?"
+
+    errors:
+      b_key_not_unique_for_type: "must be unique within the type"
+      access_denied: "Access denied"
+
+    settings:
+      tiki_url_title: "TikiWiki Base URL"
+      tiki_url_hint: "Base URL for TikiWiki links (e.g., https://tikiwiki.local/x?page=)"
+
+    permissions:
+      title: "HRZ CMDB Permissions"
+      view_cmdb: "View CMDB"
+      edit_cmdb: "Edit CMDB"
+      edit_basic_data: "Edit basic data"
+      admin_note: "Note: Administrators automatically have all permissions."
+      view_cmdb_hint: "Select groups that can view CMDB data"
+      edit_cmdb_hint: "Select groups that can edit CMDB locations"
+      edit_basic_data_hint: "Select groups that can edit basic data (hierarchy levels)"
+
+    settings:
+      title: "Settings"
+
+    seed_data:
+      title: "Seed Data Management"
+      menu_title: "Seed Data"
+      add_title: "Add Seed Data"
+      add_description: "Adds predefined basic data (location hierarchy levels, CI classes, lifecycle statuses). Existing records (identified by b_key) will be skipped."
+      add_button: "Add Seed Data"
+      add_confirm: "Are you sure you want to add seed data? Existing records will be preserved."
+      remove_title: "Remove Unused Seed Data"
+      remove_description: "Removes seed data records that are not referenced by any foreign keys. Referenced records will be kept."
+      remove_button: "Remove Unused Seed Data"
+      remove_confirm: "Are you sure you want to remove unused seed data? Only unreferenced records will be deleted."
+      add_result_title: "Seed Data Addition Results"
+      remove_result_title: "Seed Data Removal Results"
+      model: "Model"
+      inserted: "Inserted"
+      skipped: "Skipped (already exists)"
+      deleted: "Deleted"
+      kept: "Kept (in use)"
+      errors_count: "Errors"
+      errors_title: "Errors"
+      models:
+        hrzcm_locat_hier: "Location Hierarchy Levels"
+        hrzcm_ci_class: "CI Classes"
+        hrzcm_lifecycle_status: "Lifecycle Statuses"
+
+    info:
+      title: "Plugin Information"
+      menu_title: "Info"
+      plugin_info: "Plugin Information"
+      plugin_name: "Name"
+      version: "Version"
+      url: "URL"
+      statistics: "Statistics"
+      entity: "Entity"
+      count: "Count"
+      entities:
+        ci_classes: "CI Classes"
+        cis: "Configuration Items"
+        lifecycle_statuses: "Lifecycle Statuses"
+        location_hierarchies: "Location Hierarchy Levels"
+        locations: "Locations"
+
+  # Issue CI Integration
+  label_configuration_items: "Configuration Items"
+  label_configuration_item: "Configuration Item"
+  label_add_ci: "Add CI"
+  label_select_ci: "Select CI"
+  label_no_cis_linked: "No configuration items linked"
+  label_ci_class: "CI Class"
+  label_location: "Location"
+  label_lifecycle_status: "Lifecycle Status"
+  label_loading: "Loading"
+  notice_ci_added: "CI added successfully"
+  notice_ci_removed: "CI removed successfully"
+  error_ci_not_found: "CI not found"
+  label_ci_added: "added: %{new_value}"
+  label_ci_deleted: "deleted: %{old_value}"
+
+  # Project module permissions
+  project_module:
+    cmdb: "CMDB"
+  permission_view_issue_cis: "View CIs in issues"
+  permission_manage_issue_cis: "Manage CIs in issues"

@@ -1,0 +1,96 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Form partial for creating and editing external system integration entries.
+            Allows configuring third-party system connections with URL templates and default locations. %>
+
+<div class="ext-sys-form-container">
+  <h3><%= l('hrz_cmdb.external_systems.new') %></h3>
+
+  <%= form_tag '/cmdb/external_systems', method: :post, id: 'new-ext-sys-form', class: 'ext-sys-form' do %>
+    <div class="form-group">
+      <%= label_tag :b_name_full, l('hrz_cmdb.fields.b_name_full') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'ext_sys[b_name_full]', '', class: 'form-control', maxlength: 120 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_name_abbr, l('hrz_cmdb.fields.b_name_abbr') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'ext_sys[b_name_abbr]', '', class: 'form-control form-control-short', maxlength: 50 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :j_redmine_user_id, l('hrz_cmdb.fields.j_redmine_user_id') %>
+      <div class="field-wrapper">
+        <%= select_tag 'ext_sys[j_redmine_user_id]',
+                       options_for_select(
+                         [[l('hrz_cmdb.select_user'), '']] +
+                         User.active.sorted.map { |u| ["#{u.login} - #{u.firstname} #{u.lastname}", u.id] }
+                       ),
+                       class: 'form-control',
+                       id: 'ext_sys_j_redmine_user_id' %>
+        <span class="hint"><%= l('hrz_cmdb.hints.j_redmine_user_id') %></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :j_location_default_id, l('hrz_cmdb.fields.j_location_default_id') %>
+      <div class="field-wrapper">
+        <%= select_tag 'ext_sys[j_location_default_id]',
+                       options_for_select(
+                         [[l('hrz_cmdb.select_location'), '']] +
+                         HrzcmLocation.ordered_by_b_name_abbr.map { |loc| ["#{loc.b_name_abbr} - #{loc.b_name_full}", loc.id] }
+                       ),
+                       class: 'form-control',
+                       id: 'ext_sys_j_location_default_id' %>
+        <span class="hint"><%= l('hrz_cmdb.hints.j_location_default_id') %></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_url_ci_details_ext, l('hrz_cmdb.fields.b_url_ci_details_ext') %>
+      <div class="field-wrapper">
+        <%= text_field_tag 'ext_sys[b_url_ci_details_ext]', '', class: 'form-control', maxlength: 1500 %>
+        <span class="hint"><%= l('hrz_cmdb.hints.b_url_ci_details_ext') %></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_comment, l('hrz_cmdb.fields.b_comment') %>
+      <div class="field-wrapper">
+        <%= text_area_tag 'ext_sys[b_comment]', '', class: 'form-control', rows: 5, maxlength: 10000 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :b_url_doc, l('hrz_cmdb.fields.b_url_doc') %>
+      <div class="field-wrapper">
+        <div class="url-field-container">
+          <%= text_field_tag 'ext_sys[b_url_doc]', '', class: 'form-control url-field', maxlength: 1500 %>
+          <span class="url-open-icon disabled" title="<%= l('hrz_cmdb.buttons.open_url', default: 'Open URL') %>"></span>
+        </div>
+        <span class="hint"><%= l('hrz_cmdb.hints.b_url_doc') %></span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag l('hrz_cmdb.buttons.create'), class: 'button button-positive', name: 'create' %>
+      <%= link_to l('hrz_cmdb.buttons.cancel'), '#', class: 'button', onclick: 'HrzCmdb.clearDetails(); return false;' %>
+    </div>
+  <% end %>
+</div>

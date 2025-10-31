@@ -1,0 +1,61 @@
+# Configuration Items
+web_server:
+  id: 1
+  b_name_full: Web Server 01
+  b_name_abbr: WEB01
+  j_ci_class_id: 2  # server
+  j_location_id: 3  # room_101
+  j_status_id: 2    # active
+  b_producer: Dell
+  b_model: PowerEdge R740
+  b_tag_serial: SN12345
+  b_comment: Main web server
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+db_server:
+  id: 2
+  b_name_full: Database Server 01
+  b_name_abbr: DB01
+  j_ci_class_id: 2  # server
+  j_location_id: 3  # room_101
+  j_status_id: 2    # active
+  b_producer: HP
+  b_model: ProLiant DL380
+  b_tag_serial: SN67890
+  b_comment: Main database server
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+workstation_01:
+  id: 3
+  b_name_full: Workstation 01
+  b_name_abbr: WS01
+  j_ci_class_id: 3  # workstation
+  j_location_id: 4  # room_102
+  j_status_id: 2    # active
+  b_producer: Lenovo
+  b_model: ThinkPad T14
+  b_tag_serial: SN11111
+  b_comment: Developer workstation
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+ci_without_class:
+  id: 4
+  b_name_full: Invalid CI
+  b_name_abbr: INVALID
+  j_ci_class_id: ~
+  j_location_id: ~
+  j_status_id: ~
+  b_comment: CI without required class (for validation testing)
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00

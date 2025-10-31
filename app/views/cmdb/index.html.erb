@@ -1,0 +1,60 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Main CMDB page with jsTree-based hierarchical navigation for locations, CI classes, CIs, and other entities.
+            Provides the primary user interface for browsing and managing the CMDB structure. %>
+
+<% html_title(l(:label_cmdb)) %>
+
+<div id="cmdb-container">
+  <h2><%= l(:label_cmdb) %></h2>
+
+  <div class="cmdb-content">
+    <div id="cmdb-sidebar" class="cmdb-sidebar">
+      <div id="cmdb-tree-container" class="tree-container">
+        <div class="tree-header">
+          <span class="icon icon-folder"></span>
+          <%= l('hrz_cmdb.locations.title') %>
+        </div>
+        <div id="cmdb-tree" class="tree-content">
+          <!-- Tree will be loaded here via JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <div id="cmdb-main" class="cmdb-main">
+      <div id="cmdb-details" class="cmdb-details">
+        <!-- Details will be loaded here when selecting items -->
+        <div class="no-selection">
+          <%= l('hrz_cmdb.select_item') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'hrz_cmdb', plugin: 'hrz_cmdb', cache: false %>
+<%= stylesheet_link_tag 'hrz_cmdb', plugin: 'hrz_cmdb', cache: false %>
+
+<script>
+  $(document).ready(function() {
+    HrzCmdb.init({
+      treeDataUrl: '<%= tree_data_cmdb_index_path %>',
+      canEdit: <%= @can_edit ? 'true' : 'false' %>,
+      canEditBasicData: <%= @can_edit_basic_data ? 'true' : 'false' %>,
+      tikiBaseUrl: '<%= Setting.plugin_hrz_cmdb['tiki_base_url'].to_s.html_safe %>'
+    });
+  });
+</script>

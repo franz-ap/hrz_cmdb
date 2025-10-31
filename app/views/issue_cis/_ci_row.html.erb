@@ -1,0 +1,42 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Table row partial displaying a single CI entry in an issue.
+            Shows CI details with link to CMDB and remove button for unlinking. %>
+
+<tr class="ci-row" data-ci-id="<%= ci.id %>">
+  <td class="ci-name">
+    <%= link_to ci.display_name, { controller: 'cmdb', action: 'show_ci', id: ci.id }, target: '_blank', class: 'ci-link' %>
+  </td>
+  <td class="ci-class">
+    <%= ci.ci_class ? ci.ci_class.b_name_abbr : '-' %>
+  </td>
+  <td class="ci-location">
+    <%= ci.location ? ci.location.b_name_abbr : '-' %>
+  </td>
+  <td class="ci-status">
+    <%= ci.lifecycle_status ? ci.lifecycle_status.b_name_abbr : '-' %>
+  </td>
+  <% if issue.editable? %>
+    <td class="buttons">
+      <%= link_to l(:button_delete),
+                  { controller: 'issue_cis', action: 'destroy', issue_id: issue.id, id: ci.id },
+                  method: :delete,
+                  data: { confirm: l(:text_are_you_sure) },
+                  remote: true,
+                  class: 'icon icon-del' %>
+    </td>
+  <% end %>
+</tr>

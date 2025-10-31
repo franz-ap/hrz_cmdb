@@ -1,0 +1,253 @@
+#-------------------------------------------------------------------------------------------#
+# Redmine CMDB plugin: Configuration Management DataBase                                    #
+# Copyright (C) 2025 Franz Apeltauer                                                        #
+#                                                                                           #
+# This program is free software: you can redistribute it and/or modify it under the terms   #
+# of the GNU Affero General Public License as published by the Free Software Foundation,    #
+# either version 3 of the License, or (at your option) any later version.                   #
+#                                                                                           #
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; #
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #
+# See the GNU Affero General Public License for more details.                               #
+#                                                                                           #
+# You should have received a copy of the GNU Affero General Public License                  #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.                    #
+#-------------------------------------------------------------------------------------eohdr-#
+pl:
+  label_cmdb: "CMDB"
+
+  activerecord:
+    attributes:
+      hrzcm_location:
+        b_name_full: "Nazwa"
+        b_name_abbr: "Nazwa skrócona"
+        b_comment: "Uwagi"
+        b_url_doc: "Dokumentacja"
+        b_key: "Klucz tekstowy"
+        j_type_id: "Typ"
+        j_part_of1_id: "Jest częścią"
+        j_part_of2_id: "Jest również częścią"
+      hrzcm_locat_hier:
+        b_name_full: "Nazwa"
+        b_name_abbr: "Nazwa skrócona"
+        b_comment: "Uwagi"
+        b_url_doc: "Dokumentacja"
+        b_key: "Klucz tekstowy"
+        j_level: "Poziom hierarchii"
+      hrzcm_ci_class:
+        b_name_full: "Nazwa"
+        b_name_abbr: "Nazwa skrócona"
+        b_comment: "Uwagi"
+        b_url_doc: "Dokumentacja"
+        b_key: "Klucz tekstowy"
+        j_sort: "Kolejność sortowania"
+        j_subclass_of_id: "Podklasa"
+      hrzcm_lifecycle_status:
+        b_name_full: "Nazwa"
+        b_name_abbr: "Nazwa skrócona"
+        b_comment: "Uwagi"
+        b_url_doc: "Dokumentacja"
+        b_key: "Klucz tekstowy"
+      hrzcm_ci:
+        b_name_full: "Nazwa"
+        b_name_abbr: "Nazwa skrócona"
+        b_comment: "Uwagi"
+        b_url_doc: "Dokumentacja"
+        j_ci_class_id: "Klasa CI"
+        j_location_id: "Lokalizacja"
+        b_producer: "Producent, Dostawca"
+        b_model: "Model"
+        b_tag_serial: "Tag, Numer seryjny, Numer inwentarzowy"
+        j_status_id: "Status cyklu życia"
+
+  hrz_cmdb:
+    select_item: "Wybierz element z drzewa, aby wyświetlić szczegóły"
+    select_type: "Wybierz typ"
+    select_ci_class: "Wybierz klasę CI"
+    select_location: "Wybierz lokalizację"
+    select_status: "Wybierz status cyklu życia"
+
+    locations:
+      title: "Lokalizacje"
+      new: "Utwórz nową lokalizację"
+      created: "Lokalizacja utworzona pomyślnie"
+      updated: "Lokalizacja zaktualizowana pomyślnie"
+      deleted: "Lokalizacja usunięta pomyślnie"
+
+    location_hierarchy:
+      title: "Hierarchia lokalizacji"
+      new: "Utwórz nowy poziom hierarchii"
+      created: "Poziom hierarchii utworzony pomyślnie"
+      updated: "Poziom hierarchii zaktualizowany pomyślnie"
+      deleted: "Poziom hierarchii usunięty pomyślnie"
+      has_locations: "Nie można usunąć: poziom hierarchii ma przypisane lokalizacje"
+
+    ci_classes:
+      title: "Klasy CI"
+      new: "Utwórz nową klasę CI"
+      created: "Klasa CI utworzona pomyślnie"
+      updated: "Klasa CI zaktualizowana pomyślnie"
+      deleted: "Klasa CI usunięta pomyślnie"
+      has_subclasses: "Nie można usunąć: klasa CI ma podklasy"
+      has_cis: "Nie można usunąć: klasa CI jest używana przez elementy konfiguracji"
+      cannot_delete_in_use: "Nie można usunąć: klasa CI jest nadal w użyciu"
+
+    cis:
+      title: "Elementy konfiguracji"
+      new: "Utwórz nowy CI"
+      created: "CI utworzony pomyślnie"
+      updated: "CI zaktualizowany pomyślnie"
+      deleted: "CI usunięty pomyślnie"
+
+    cis_by_class:
+      title: "CI według klas"
+
+    lifecycle_statuses:
+      title: "Statusy cyklu życia"
+      new: "Utwórz nowy status cyklu życia"
+      created: "Status cyklu życia utworzony pomyślnie"
+      updated: "Status cyklu życia zaktualizowany pomyślnie"
+      deleted: "Status cyklu życia usunięty pomyślnie"
+
+    external_systems:
+      title: "Systemy zewnętrzne"
+      new: "Utwórz nowy system zewnętrzny"
+      created: "System zewnętrzny utworzony pomyślnie"
+      updated: "System zewnętrzny zaktualizowany pomyślnie"
+      deleted: "System zewnętrzny usunięty pomyślnie"
+
+    basic_data:
+      title: "Dane podstawowe"
+
+    fields:
+      bezeichnung: "Nazwa"
+      kurzbezeichnung: "Nazwa skrócona"
+      bemerkungen: "Uwagi"
+      dokumentation: "Dokumentacja"
+      b_name_full: "Nazwa"
+      b_name_abbr: "Nazwa skrócona"
+      b_comment: "Uwagi"
+      b_url_doc: "Dokumentacja"
+      b_key: "Klucz tekstowy"
+      j_level: "Poziom hierarchii"
+      j_sort: "Kolejność sortowania"
+      j_subclass_of: "Podklasa"
+      type: "Typ"
+      part_of1: "Jest częścią"
+      part_of2: "Jest również częścią"
+      j_ci_class: "Klasa CI"
+      j_location: "Lokalizacja"
+      b_producer: "Producent, Dostawca"
+      b_model: "Model"
+      b_tag_serial: "Tag, Numer seryjny, Numer inwentarzowy"
+      j_status: "Status cyklu życia"
+      b_url_ci_details_ext: "URL wyświetlania szczegółów CI w systemie zewnętrznym"
+      j_redmine_user_id: "ID użytkownika Redmine"
+      j_location_default_id: "Domyślna lokalizacja"
+
+    hints:
+      dokumentation: "Dowolny URL. Dla artykułów TikiWiki wystarczy prefiks tiki: i nazwa strony."
+      b_key_hierarchy: "Unikalny klucz tekstowy"
+      b_key_location: "Np. dla krajów kod ISO 3166-1."
+      b_key_ci_class: "Unikalny klucz tekstowy"
+      b_key_lifecycle_status: "Unikalny klucz tekstowy"
+      j_level: "Określa kolejność sortowania np. od 10=Planeta Ziemia / 20=Kontynent co dziesięć do 5000: Szafa"
+      j_sort: "Dowolna liczba. Rekordy są sortowane według tej liczby rosnąco. Dla równych liczb według nazwy skróconej."
+      b_url_ci_details_ext: "URL do wyświetlania szczegółów CI w tym systemie zewnętrznym. Tekst \"${key_ext}\" zostanie zastąpiony kluczem systemu zewnętrznego. Przykład: \"https://ext_cmdb.local/disp?key=${key_ext}\""
+      j_redmine_user_id: "Użytkownik Redmine, którego system zewnętrzny używa do uwierzytelniania w celu synchronizacji danych."
+      j_location_default_id: "Jeśli system zewnętrzny zawiera tylko CI z określonej lokalizacji lub nie dostarcza informacji o lokalizacji, lokalizacja określona tutaj będzie używana dla wszystkich CI zgłaszanych przez ten system zewnętrzny."
+      select_user: "Wybierz użytkownika"
+
+    buttons:
+      save: "Zapisz zmiany"
+      save_continue: "Zapisz zmiany, kontynuuj"
+      save_as_copy: "Zapisz jako kopię"
+      cancel: "Anuluj"
+      create: "Utwórz nowy wpis"
+      delete: "Usuń"
+      open_url: "Otwórz URL"
+      back: "Wróć"
+
+    confirm:
+      delete_location: "Czy na pewno chcesz usunąć tę lokalizację?"
+      delete_ci_class: "Czy na pewno chcesz usunąć tę klasę CI?"
+      delete_ci: "Czy na pewno chcesz usunąć ten CI?"
+      delete_lifecycle_status: "Czy na pewno chcesz usunąć ten status cyklu życia?"
+      delete_ext_sys: "Czy na pewno chcesz usunąć ten system zewnętrzny?"
+      delete_hierarchy: "Czy na pewno chcesz usunąć ten poziom hierarchii?"
+
+    errors:
+      b_key_not_unique_for_type: "musi być unikalny w ramach typu"
+      access_denied: "Dostęp zabroniony"
+
+    permissions:
+      view_cmdb: "Wyświetl CMDB"
+      edit_cmdb: "Edytuj CMDB"
+      edit_basic_data: "Edytuj dane podstawowe"
+
+    settings:
+      title: "Ustawienia"
+
+    seed_data:
+      title: "Zarządzanie danymi początkowymi"
+      menu_title: "Dane początkowe"
+      add_title: "Dodawanie danych początkowych"
+      add_description: "Dodaje predefiniowane dane podstawowe (poziomy hierarchii lokalizacji, klasy CI, statusy cyklu życia). Istniejące rekordy (identyfikowane przez b_key) zostaną pominięte."
+      add_button: "Dodaj dane początkowe"
+      add_confirm: "Czy na pewno chcesz dodać dane początkowe? Istniejące rekordy zostaną zachowane."
+      remove_title: "Usuwanie nieużywanych danych początkowych"
+      remove_description: "Usuwa rekordy danych początkowych, do których nie odwołują się klucze obce. Rekordy, do których są odniesienia, zostaną zachowane."
+      remove_button: "Usuń nieużywane dane początkowe"
+      remove_confirm: "Czy na pewno chcesz usunąć nieużywane dane początkowe? Tylko rekordy bez odniesień zostaną usunięte."
+      add_result_title: "Wyniki dodawania danych początkowych"
+      remove_result_title: "Wyniki usuwania danych początkowych"
+      model: "Model"
+      inserted: "Wstawiono"
+      skipped: "Pominięto (już istnieje)"
+      deleted: "Usunięto"
+      kept: "Zachowano (w użyciu)"
+      errors_count: "Błędy"
+      errors_title: "Błędy"
+      models:
+        hrzcm_locat_hier: "Poziomy hierarchii lokalizacji"
+        hrzcm_ci_class: "Klasy CI"
+        hrzcm_lifecycle_status: "Statusy cyklu życia"
+
+    info:
+      title: "Informacje o wtyczce"
+      menu_title: "Info"
+      plugin_info: "Informacje o wtyczce"
+      plugin_name: "Nazwa"
+      version: "Wersja"
+      url: "URL"
+      statistics: "Statystyki"
+      entity: "Encja"
+      count: "Liczba"
+      entities:
+        ci_classes: "Klasy CI"
+        cis: "Elementy konfiguracji"
+        lifecycle_statuses: "Statusy cyklu życia"
+        location_hierarchies: "Poziomy hierarchii lokalizacji"
+        locations: "Lokalizacje"
+
+  # Issue CI Integration
+  label_configuration_items: "Elementy konfiguracji"
+  label_configuration_item: "Element konfiguracji"
+  label_add_ci: "Dodaj CI"
+  label_select_ci: "Wybierz CI"
+  label_no_cis_linked: "Brak powiązanych elementów konfiguracji"
+  label_ci_class: "Klasa CI"
+  label_location: "Lokalizacja"
+  label_lifecycle_status: "Status cyklu życia"
+  label_loading: "Ładowanie"
+  notice_ci_added: "CI dodany pomyślnie"
+  notice_ci_removed: "CI usunięty pomyślnie"
+  error_ci_not_found: "Nie znaleziono CI"
+  label_ci_added: "dodano: %{new_value}"
+  label_ci_deleted: "usunięto: %{old_value}"
+
+  # Project module permissions
+  project_module:
+    cmdb: "CMDB"
+  permission_view_issue_cis: "Wyświetl CI w zgłoszeniach"
+  permission_manage_issue_cis: "Zarządzaj CI w zgłoszeniach"

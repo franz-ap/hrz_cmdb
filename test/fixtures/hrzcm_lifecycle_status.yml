@@ -1,0 +1,44 @@
+# Lifecycle Statuses
+planning:
+  id: 1
+  b_name_full: Planning
+  b_name_abbr: PLAN
+  b_key: planning
+  b_comment: In planning phase
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+active:
+  id: 2
+  b_name_full: Active
+  b_name_abbr: ACT
+  b_key: active
+  b_comment: Currently in use
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+maintenance:
+  id: 3
+  b_name_full: Maintenance
+  b_name_abbr: MAINT
+  b_key: maintenance
+  b_comment: Under maintenance
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00
+
+decommissioned:
+  id: 4
+  b_name_full: Decommissioned
+  b_name_abbr: DECOMM
+  b_key: decommissioned
+  b_comment: No longer in use
+  created_by: 1
+  created_on: 2025-01-01 10:00:00
+  updated_by: 1
+  updated_on: 2025-01-01 10:00:00

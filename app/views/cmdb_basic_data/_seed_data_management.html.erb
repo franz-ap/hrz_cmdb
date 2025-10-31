@@ -1,0 +1,109 @@
+<!-- ------------------------------------------------------------------------------------------- -->
+<!--  Redmine CMDB plugin: Configuration Management DataBase                                     -->
+<!--  Copyright (C) 2025 Franz Apeltauer                                                         -->
+<!--                                                                                             -->
+<!--  This program is free software: you can redistribute it and/or modify it under the terms    -->
+<!--  of the GNU Affero General Public License as published by the Free Software Foundation,     -->
+<!--  either version 3 of the License, or (at your option) any later version.                    -->
+<!--                                                                                             -->
+<!--  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;  -->
+<!--  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  -->
+<!--  See the GNU Affero General Public License for more details.                                -->
+<!--                                                                                             -->
+<!--  You should have received a copy of the GNU Affero General Public License                   -->
+<!--  along with this program.  If not, see <https://www.gnu.org/licenses/>.                     -->
+<!-- -------------------------------------------------------------------------------------eohdr- -->
+<%# Purpose: Seed data management interface with buttons for adding and removing seed data. %>
+
+<div class="seed-data-management">
+  <h3><%= l('hrz_cmdb.seed_data.title') %></h3>
+
+  <div class="seed-data-section">
+    <h4><%= l('hrz_cmdb.seed_data.add_title') %></h4>
+    <p><%= l('hrz_cmdb.seed_data.add_description') %></p>
+    <div class="button-group">
+      <%= link_to l('hrz_cmdb.seed_data.add_button'),
+                  add_seed_data_cmdb_basic_data_path,
+                  method: :post,
+                  remote: true,
+                  class: 'button button-positive',
+                  data: { confirm: l('hrz_cmdb.seed_data.add_confirm') } %>
+    </div>
+  </div>
+
+  <div class="seed-data-section">
+    <h4><%= l('hrz_cmdb.seed_data.remove_title') %></h4>
+    <p><%= l('hrz_cmdb.seed_data.remove_description') %></p>
+    <div class="button-group">
+      <%= link_to l('hrz_cmdb.seed_data.remove_button'),
+                  remove_unused_seed_data_cmdb_basic_data_path,
+                  method: :post,
+                  remote: true,
+                  class: 'button button-negative',
+                  data: { confirm: l('hrz_cmdb.seed_data.remove_confirm') } %>
+    </div>
+  </div>
+
+  <div id="seed-data-result"></div>
+</div>
+
+<script>
+// Handle AJAX responses for seed data operations
+$(document).ready(function() {
+  // Handle successful AJAX responses for seed data operations
+  $('[data-confirm]').on('ajax:success', function(event) {
+    var detail = event.detail;
+    var data = detail[0], status = detail[1], xhr = detail[2];
+
+    console.log('Seed data operation completed, inserting response...');
+    console.log('Response type:', typeof data, data instanceof Document ? '(Document object)' : '');
+
+    // Handle both string responses and Document objects
+    var htmlContent = data;
+    if (data instanceof Document) {
+      // If Rails UJS parsed it as a Document, extract the body content
+      console.log('Extracting HTML from Document object...');
+      htmlContent = data.body ? data.body.innerHTML : '';
+    }
+
+    // Insert the HTML response into the result container
+    $('#seed-data-result').html(htmlContent);
+
+    // Refresh the tree to show updated data
+    setTimeout(function() {
+      console.log('Refreshing tree after seed data operation...');
+      HrzCmdb.refreshTree();
+    }, 500);
+  });
+
+  // Handle AJAX errors
+  $('[data-confirm]').on('ajax:error', function(event) {
+    var detail = event.detail;
+    var data = detail[0], status = detail[1], xhr = detail[2];
+
+    console.error('Seed data operation failed:', status);
+    $('#seed-data-result').html('<div class="flash error">Operation failed: ' + status + '</div>');
+  });
+});
+</script>
+
+<style>
+.seed-data-management {
+  padding: 15px;
+}
+
+.seed-data-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.seed-data-section h4 {
+  margin-top: 0;
+}
+
+.button-group {
+  margin-top: 10px;
+}
+</style>

@@ -1,0 +1,280 @@
+#-------------------------------------------------------------------------------------------#
+# Redmine CMDB plugin: Configuration Management DataBase                                    #
+# Copyright (C) 2025 Franz Apeltauer                                                        #
+#                                                                                           #
+# This program is free software: you can redistribute it and/or modify it under the terms   #
+# of the GNU Affero General Public License as published by the Free Software Foundation,    #
+# either version 3 of the License, or (at your option) any later version.                   #
+#                                                                                           #
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; #
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. #
+# See the GNU Affero General Public License for more details.                               #
+#                                                                                           #
+# You should have received a copy of the GNU Affero General Public License                  #
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.                    #
+#-------------------------------------------------------------------------------------eohdr-#
+hr:
+  label_cmdb: "CMDB"
+
+  activerecord:
+    attributes:
+      hrzcm_location:
+        b_name_full: "Naziv"
+        b_name_abbr: "Kratki naziv"
+        b_comment: "Napomene"
+        b_url_doc: "Dokumentacija"
+        b_key: "Tekstni ključ"
+        j_type_id: "Tip"
+        j_part_of1_id: "Dio je"
+        j_part_of2_id: "Također je dio"
+      hrzcm_locat_hier:
+        b_name_full: "Naziv"
+        b_name_abbr: "Kratki naziv"
+        b_comment: "Napomene"
+        b_url_doc: "Dokumentacija"
+        b_key: "Tekstni ključ"
+        j_level: "Razina hijerarhije"
+      hrzcm_ci_class:
+        b_name_full: "Naziv"
+        b_name_abbr: "Kratki naziv"
+        b_comment: "Napomene"
+        b_url_doc: "Dokumentacija"
+        b_key: "Tekstni ključ"
+        j_sort: "Redoslijed sortiranja"
+        j_subclass_of_id: "Podklasa"
+      hrzcm_lifecycle_status:
+        b_name_full: "Puni naziv"
+        b_name_abbr: "Skraćenica"
+        b_comment: "Komentar"
+        b_url_doc: "URL dokumentacije"
+        b_key: "Tekstni ključ"
+      hrzcm_ci:
+        b_name_full: "Puni naziv"
+        b_name_abbr: "Skraćenica"
+        b_comment: "Komentar"
+        b_url_doc: "URL dokumentacije"
+        j_ci_class_id: "CI klasa"
+        j_location_id: "Lokacija"
+        b_producer: "Proizvođač, Dobavljač"
+        b_model: "Model"
+        b_tag_serial: "Oznaka, Serijski broj, Inventarni broj"
+        j_status_id: "Status životnog ciklusa"
+      hrzcm_ext_sys:
+        b_name_full: "Puni naziv"
+        b_name_abbr: "Skraćenica"
+        b_comment: "Komentar"
+        b_url_doc: "URL dokumentacije"
+        b_key: "Tekstni ključ"
+        b_url_ci_details_ext: "URL vanjskog sustava za detalje CI-ja"
+        j_redmine_user_id: "ID Redmine korisnika"
+        j_location_default_id: "Zadana lokacija"
+
+  hrz_cmdb:
+    select_item: "Odaberite element iz stabla za prikaz detalja"
+    select_type: "Odaberite tip"
+    select_ci_class: "Odaberite CI klasu"
+    select_location: "Odaberite lokaciju"
+    select_status: "Odaberite status životnog ciklusa"
+
+    locations:
+      title: "Lokacije"
+      new: "Stvori novu lokaciju"
+      created: "Lokacija uspješno stvorena"
+      updated: "Lokacija uspješno ažurirana"
+      deleted: "Lokacija uspješno obrisana"
+
+    location_hierarchy:
+      title: "Hijerarhija lokacija"
+      new: "Stvori novu razinu hijerarhije"
+      created: "Razina hijerarhije uspješno stvorena"
+      updated: "Razina hijerarhije uspješno ažurirana"
+      deleted: "Razina hijerarhije uspješno obrisana"
+      has_locations: "Ne može se obrisati: razina hijerarhije ima povezane lokacije"
+
+    ci_classes:
+      title: "CI klase"
+      new: "Stvori novu CI klasu"
+      created: "CI klasa uspješno stvorena"
+      updated: "CI klasa uspješno ažurirana"
+      deleted: "CI klasa uspješno obrisana"
+      has_subclasses: "Ne može se obrisati: CI klasa ima podklase"
+      has_cis: "Ne može se obrisati: CI klasa se koristi u konfiguracijskim elementima"
+      cannot_delete_in_use: "Ne može se obrisati: CI klasa je još u upotrebi"
+
+    cis:
+      title: "Konfiguracijski elementi"
+      new: "Stvori novi CI"
+      created: "CI uspješno stvoren"
+      updated: "CI uspješno ažuriran"
+      deleted: "CI uspješno obrisan"
+
+    cis_by_class:
+      title: "CI prema klasama"
+
+    lifecycle_statuses:
+      title: "Statusi životnog ciklusa"
+      new: "Stvori novi status životnog ciklusa"
+      created: "Status životnog ciklusa uspješno stvoren"
+      updated: "Status životnog ciklusa uspješno ažuriran"
+      deleted: "Status životnog ciklusa uspješno obrisan"
+
+    external_systems:
+      title: "Vanjski sustavi"
+      new: "Stvori novi vanjski sustav"
+      created: "Vanjski sustav uspješno stvoren"
+      updated: "Vanjski sustav uspješno ažuriran"
+      deleted: "Vanjski sustav uspješno obrisan"
+
+    basic_data:
+      title: "Osnovni podaci"
+
+    fields:
+      bezeichnung: "Naziv"
+      kurzbezeichnung: "Kratki naziv"
+      bemerkungen: "Napomene"
+      dokumentation: "Dokumentacija"
+      b_name_full: "Puni naziv"
+      b_name_abbr: "Skraćenica"
+      b_comment: "Komentar"
+      b_url_doc: "URL dokumentacije"
+      b_key: "Tekstni ključ"
+      j_level: "Razina hijerarhije"
+      j_sort: "Redoslijed sortiranja"
+      j_subclass_of: "Podklasa"
+      type: "Tip"
+      part_of1: "Dio je"
+      part_of2: "Također je dio"
+      j_ci_class: "CI klasa"
+      j_location: "Lokacija"
+      b_producer: "Proizvođač, Dobavljač"
+      b_model: "Model"
+      b_tag_serial: "Oznaka, Serijski broj, Inventarni broj"
+      j_status: "Status životnog ciklusa"
+      b_url_ci_details_ext: "URL vanjskog sustava za detalje CI-ja"
+      j_redmine_user_id: "ID Redmine korisnika"
+      j_location_default_id: "Zadana lokacija"
+
+    hints:
+      dokumentation: "Bilo koji URL. Za TikiWiki članke, samo prefiks tiki: praćen nazivom stranice."
+      b_url_doc: "Bilo koji URL. Za TikiWiki članke, samo prefiks tiki: praćen nazivom stranice."
+      b_key_hierarchy: "Jedinstveni tekstni ključ"
+      b_key_location: "Npr. za države ISO 3166-1 kod."
+      b_key_ci_class: "Jedinstveni tekstni ključ"
+      b_key_lifecycle_status: "Jedinstveni tekstni ključ"
+      j_level: "Određuje redoslijed sortiranja npr. od 10=Planet Zemlja / 20=Kontinent u koracima od deset do 5000: Ormar"
+      j_sort: "Bilo koji broj. Zapisi se sortiraju po ovom broju uzlazno. Za jednake brojeve po kratkom nazivu."
+      b_url_ci_details_ext: "URL za prikaz detalja CI-ja u ovom vanjskom sustavu. Tekst \"${key_ext}\" će biti zamijenjen ključem vanjskog sustava. Primjer: \"https://ext_cmdb.local/disp?key=${key_ext}\""
+      j_redmine_user_id: "Redmine korisnik kojeg vanjski sustav koristi za autentifikaciju za sinkronizaciju podataka."
+      j_location_default_id: "Ako vanjski sustav sadrži samo CI-jeve s određene lokacije ili ne pruža informacije o lokaciji, lokacija navedena ovdje će se koristiti za sve CI-jeve koje prijavljuje ovaj vanjski sustav."
+      select_user: "Odaberi korisnika"
+
+    status_info:
+      title: "Informacije o statusu"
+      record_id: "ID zapisa"
+      created_by: "Stvorio"
+      updated_by: "zadnje ažurirao"
+      at: "u"
+      new_record: "Novi zapis (još nije spremljen)"
+
+    buttons:
+      save: "Spremi promjene"
+      save_continue: "Spremi promjene, nastavi"
+      save_as_copy: "Spremi kao kopiju"
+      cancel: "Odustani"
+      create: "Stvori novi unos"
+      delete: "Izbriši"
+      open_url: "Otvori URL"
+      back: "Natrag"
+
+    confirm:
+      delete_location: "Jeste li sigurni da želite izbrisati ovu lokaciju?"
+      delete_ci_class: "Jeste li sigurni da želite izbrisati ovu CI klasu?"
+      delete_ci: "Jeste li sigurni da želite izbrisati ovaj CI?"
+      delete_lifecycle_status: "Jeste li sigurni da želite izbrisati ovaj status životnog ciklusa?"
+      delete_ext_sys: "Jeste li sigurni da želite izbrisati ovaj vanjski sustav?"
+      delete_hierarchy: "Jeste li sigurni da želite izbrisati ovu razinu hijerarhije?"
+
+    errors:
+      b_key_not_unique_for_type: "mora biti jedinstven unutar tipa"
+      access_denied: "Pristup odbijen"
+
+    settings:
+      tiki_url_title: "TikiWiki osnovni URL"
+      tiki_url_hint: "Osnovni URL za TikiWiki linkove (npr. https://tikiwiki.local/x?page=)"
+
+    permissions:
+      title: "HRZ CMDB Dozvole"
+      view_cmdb: "Pregled CMDB-a"
+      edit_cmdb: "Uređivanje CMDB-a"
+      edit_basic_data: "Uređivanje osnovnih podataka"
+      admin_note: "Napomena: Administratori automatski imaju sve dozvole."
+      view_cmdb_hint: "Odaberite grupe koje mogu pregledavati CMDB podatke"
+      edit_cmdb_hint: "Odaberite grupe koje mogu uređivati CMDB lokacije"
+      edit_basic_data_hint: "Odaberite grupe koje mogu uređivati osnovne podatke (razine hijerarhije)"
+
+    settings:
+      title: "Postavke"
+
+    seed_data:
+      title: "Upravljanje početnim podacima"
+      menu_title: "Početni podaci"
+      add_title: "Dodavanje početnih podataka"
+      add_description: "Dodaje unaprijed definirane osnovne podatke (razine hijerarhije lokacija, CI klase, statuse životnog ciklusa). Postojeći zapisi (identificirani po b_key) bit će preskočeni."
+      add_button: "Dodaj početne podatke"
+      add_confirm: "Jeste li sigurni da želite dodati početne podatke? Postojeći zapisi bit će sačuvani."
+      remove_title: "Uklanjanje nekorištenih početnih podataka"
+      remove_description: "Uklanja zapise početnih podataka na koje se ne upućuje putem stranih ključeva. Referencirani zapisi bit će zadržani."
+      remove_button: "Ukloni nekorištene početne podatke"
+      remove_confirm: "Jeste li sigurni da želite ukloniti nekorištene početne podatke? Samo nereferencirni zapisi bit će obrisani."
+      add_result_title: "Rezultati dodavanja početnih podataka"
+      remove_result_title: "Rezultati uklanjanja početnih podataka"
+      model: "Model"
+      inserted: "Umetnutih"
+      skipped: "Preskočeno (već postoji)"
+      deleted: "Obrisano"
+      kept: "Zadržano (u upotrebi)"
+      errors_count: "Greške"
+      errors_title: "Greške"
+      models:
+        hrzcm_locat_hier: "Razine hijerarhije lokacija"
+        hrzcm_ci_class: "CI klase"
+        hrzcm_lifecycle_status: "Statusi životnog ciklusa"
+
+    info:
+      title: "Informacije o dodatku"
+      menu_title: "Info"
+      plugin_info: "Informacije o dodatku"
+      plugin_name: "Naziv"
+      version: "Verzija"
+      url: "URL"
+      statistics: "Statistika"
+      entity: "Entitet"
+      count: "Broj"
+      entities:
+        ci_classes: "CI klase"
+        cis: "Konfiguracijski elementi"
+        lifecycle_statuses: "Statusi životnog ciklusa"
+        location_hierarchies: "Razine hijerarhije lokacija"
+        locations: "Lokacije"
+
+  # Issue CI Integration
+  label_configuration_items: "Konfiguracijski elementi"
+  label_configuration_item: "Konfiguracijski element"
+  label_add_ci: "Dodaj CI"
+  label_select_ci: "Odaberi CI"
+  label_no_cis_linked: "Nema povezanih konfiguracijskih elemenata"
+  label_ci_class: "CI klasa"
+  label_location: "Lokacija"
+  label_lifecycle_status: "Status životnog ciklusa"
+  label_loading: "Učitavanje"
+  notice_ci_added: "CI uspješno dodan"
+  notice_ci_removed: "CI uspješno uklonjen"
+  error_ci_not_found: "CI nije pronađen"
+  label_ci_added: "dodano: %{new_value}"
+  label_ci_deleted: "uklonjeno: %{old_value}"
+
+  # Project module permissions
+  project_module:
+    cmdb: "CMDB"
+  permission_view_issue_cis: "Pregled CI-jeva u problemima"
+  permission_manage_issue_cis: "Upravljanje CI-jevima u problemima"
